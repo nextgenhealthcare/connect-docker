@@ -3,14 +3,9 @@ services:
   mc:
     image: nextgenconnect-public:3.8
     environment:
-      - DATABASE=postgres
-      - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
       - DATABASE_MAX_CONNECTIONS=20
-      - DATABASE_USERNAME=mirthdb
-      - DATABASE_PASSWORD=mirthdb
       - KEYSTORE_STOREPASS=docker_storepass
       - KEYSTORE_KEYPASS=docker_keypass
-      # - MAX_HEAP_SIZE=1g
       - VMOPTIONS=-Xmx512m,-Xmx768m
     volumes:
       - ~/Downloads/test_appdata:/opt/connect/appdata
@@ -21,16 +16,6 @@ services:
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp
-    depends_on:
-      - db
-  db:
-    image: postgres
-    environment:
-      - POSTGRES_USER=mirthdb
-      - POSTGRES_PASSWORD=mirthdb
-      - POSTGRES_DB=mirthdb
-    expose:
-      - 5432
 
 secrets:
   mirth_properties:

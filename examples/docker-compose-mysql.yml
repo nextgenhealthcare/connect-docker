@@ -2,6 +2,7 @@ version: "3.1"
 services:
   mc:
     image: nextgenconnect-public:3.8
+    name: 
     environment:
       - DATABASE=mysql
       - DATABASE_URL=jdbc:mysql://db:3306/mirthdb

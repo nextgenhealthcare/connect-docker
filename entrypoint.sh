@@ -205,12 +205,8 @@ case "$DATABASE" in
 			sleep 1
 		done
 		;;
-	"derby" )
-		sleep 1
-		;;
 	*)
-		echo "Unable to connect to Unknown database $DATABASE. Aborting."
-		exit 1
+        sleep 1
 		;;
 esac
 
