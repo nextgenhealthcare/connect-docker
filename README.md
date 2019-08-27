@@ -81,7 +81,44 @@ Look at the [Environment Variables](#environment-variables) section for more ava
 <a name="using-docker-compose"></a>
 ## Using [`docker stack deploy`](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [`docker-compose`](https://github.com/docker/compose) [↑](#top)
 
-TODO
+With `docker stack` or `docker-compose` you can easily setup and launch multiple related containers. For example you might want to launch both Connect *and* a PostgreSQL database to run alongside it.
+
+```bash
+docker-compose -f stack.yml up
+```
+
+Here's an example `stack.yml` file you can use:
+```yaml
+version: "3.1"
+services:
+  mc:
+    image: nextgenhealthcare/connect
+    environment:
+      - DATABASE=postgres
+      - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
+      - DATABASE_MAX_CONNECTIONS=20
+      - DATABASE_USERNAME=mirthdb
+      - DATABASE_PASSWORD=mirthdb
+      - KEYSTORE_STOREPASS=docker_storepass
+      - KEYSTORE_KEYPASS=docker_keypass
+      - VMOPTIONS=-Xmx512m
+    ports:
+      - 8080:8080/tcp
+      - 8443:8443/tcp
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=mirthdb
+      - POSTGRES_PASSWORD=mirthdb
+      - POSTGRES_DB=mirthdb
+    expose:
+      - 5432
+```
+[![Try in PWD](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](http://play-with-docker.com/?stack=https://raw.githubusercontent.com/nextgenhealthcare/connect-docker/master/examples/play-with-docker-example.yml)
+
+There are other example stack files in the [examples directory](https://github.com/nextgenhealthcare/connect-docker/tree/master/examples)!
 
 <a name="environment-variables"></a>
 ## Environment Variables [↑](#top)
@@ -155,6 +192,10 @@ If set to true, the web server sessions are stored in the database. This can be 
 
 A comma-separated list of JVM command-line options to place in the `.vmoptions` file. For example to set the max heap size:
 * -Xmx512m
+
+#### `DELAY`
+
+This tells the entrypoint script to wait for a certain amount of time (in seconds). The entrypoint script will automatically use a command-line SQL client to check connectivity and wait until the database is up before starting Connect, but only when using PostgreSQL or MySQL. If you are using Oracle or SQL Server and the database is being started up at the same time as Connect, you may want to use this option to tell Connect to wait a bit to allow the database time to startup.
 
 <a name="other-mirth-properties-options"></a>
 ### Other mirth.properties options [↑](#top)
