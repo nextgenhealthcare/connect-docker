@@ -32,13 +32,11 @@
 An open-source message integration engine focused on healthcare. For more information please visit our [GitHub page](https://github.com/nextgenhealthcare/connect).
 ![](https://secure.gravatar.com/avatar/0ef900dca6d985a37122ff8db0a06cc2.jpg?s=160) ![](https://github.com/nextgenhealthcare/connect/raw/development/server/public_html/images/mirthconnectlogowide.png)
 
-
-
 # How to use this image
 ## Start a Connect instance
 Quickly start Connect using embedded Derby database and all default configurations 
 
-` $docker run --name myconnectinstance -d connect:latest`
+`$docker run --name myconnectinstance -d connect:latest`
 
 ... where ...
 
@@ -52,6 +50,6 @@ Quickly start Connect using embedded Derby database and all default configuratio
 ## Environment Variables 
 
 # License
-View license information for the software contained in this image
-NextGen Connect is released under the [Mozilla Public License version 1.1](https://www.mozilla.org/en-US/MPL/1.1/ "Mozilla Public License version 1.1"). You can find a copy of the license in `server/docs/LICENSE.txt`.
-All licensing information regarding third-party libraries is located in the `server/docs/thirdparty` folder.
+The Dockerfiles, entrypoint script, and any other files used to build these Docker images are Copyright © NextGen Healthcare and licensed under the [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
+
+NextGen Connect is released under the [Mozilla Public License 1.1](https://www.mozilla.org/en-US/MPL/1.1/). You can find a copy of the license in [server/docs/LICENSE.txt](https://github.com/nextgenhealthcare/connect/blob/development/server/docs/LICENSE.txt). All licensing information regarding third-party libraries is located in the [server/docs/thirdparty](https://github.com/nextgenhealthcare/connect/tree/development/server/docs/thirdparty) folder.
