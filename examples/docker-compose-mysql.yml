@@ -13,7 +13,7 @@ services:
       - KEYSTORE_KEYPASS=docker_keypass
       - VMOPTIONS=-Xmx512m
     volumes:
-      - ~/Downloads/test_appdata:/opt/connect/appdata
+      - ~/Documents/connect-docker/appdata:/opt/connect/appdata
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp

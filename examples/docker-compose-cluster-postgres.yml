@@ -13,8 +13,8 @@ services:
       - SESSION_STORE=true
       - VMOPTIONS=-Xmx512m
     volumes:
-      - ~/Downloads/test_appdata1:/opt/connect/appdata
-      - ~/Downloads/custom_extensions:/opt/connect/custom-extensions
+      - ~/Documents/connect-docker/appdata1:/opt/connect/appdata
+      - ~/Documents/connect-docker/custom_extensions:/opt/connect/custom-extensions
     secrets:
       - mirth_properties
       - mcserver_vmoptions
@@ -39,8 +39,8 @@ services:
       - DELAY=10
       - VMOPTIONS=-Xmx512m
     volumes:
-      - ~/Downloads/test_appdata2:/opt/connect/appdata
-      - ~/Downloads/custom_extensions:/opt/connect/custom-extensions
+      - ~/Documents/connect-docker/appdata2:/opt/connect/appdata
+      - ~/Documents/connect-docker/custom_extensions:/opt/connect/custom-extensions
     secrets:
       - mirth_properties
       - mcserver_vmoptions
@@ -58,7 +58,7 @@ services:
       - 8443:8443/tcp
       - 9500:9500/tcp
     volumes:
-      - ~/Downloads/haproxy:/usr/local/etc/haproxy:ro
+      - ~/Documents/connect-docker/haproxy:/usr/local/etc/haproxy:ro
     depends_on:
       - mc1
       - mc2
@@ -73,6 +73,6 @@ services:
 
 secrets:
   mirth_properties:
-    file: ~/Downloads/mirth.properties
+    file: ~/Documents/connect-docker/secret.properties
   mcserver_vmoptions:
-    file: ~/Downloads/mcserver.vmoptions
+    file: ~/Documents/connect-docker/secret.vmoptions

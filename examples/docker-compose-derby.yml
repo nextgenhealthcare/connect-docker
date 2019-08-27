@@ -8,8 +8,8 @@ services:
       - KEYSTORE_KEYPASS=docker_keypass
       - VMOPTIONS=-Xmx512m
     volumes:
-      - ~/Downloads/test_appdata:/opt/connect/appdata
-      - ~/Downloads/custom_extensions:/opt/connect/custom-extensions
+      - ~/Documents/connect-docker/appdata:/opt/connect/appdata
+      - ~/Documents/connect-docker/custom_extensions:/opt/connect/custom-extensions
     secrets:
       - mirth_properties
       - mcserver_vmoptions
@@ -19,6 +19,6 @@ services:
 
 secrets:
   mirth_properties:
-    file: ~/Downloads/mirth.properties
+    file: ~/Documents/connect-docker/secret.properties
   mcserver_vmoptions:
-    file: ~/Downloads/mcserver.vmoptions
+    file: ~/Documents/connect-docker/secret.vmoptions
