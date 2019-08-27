@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:11-jre
 
 # Investigate how to make images smaller - changes/run commands create new layers
 RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales postgresql-client mysql-client \
