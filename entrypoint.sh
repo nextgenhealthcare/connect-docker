@@ -31,11 +31,6 @@ if ! [ -z "${DATABASE_URL+x}" ]; then
 	sed -i "s/^database\.url\s*=\s*.*\$/database.url = ${DATABASE_URL//\//\\/}/" /opt/connect/conf/mirth.properties
 fi
 
-# db url
-if ! [ -z "${DATABASE_URL+x}" ]; then
-	sed -i "s/^database\.url\s*=\s*.*\$/database.url = ${DATABASE_URL//\//\\/}/" /opt/connect/conf/mirth.properties
-fi
-
 # database max connections
 if ! [ -z "${DATABASE_MAX_CONNECTIONS+x}" ]; then
 	sed -i "s/^database\.max-connections\s*=\s*.*\$/database.max-connections = ${DATABASE_MAX_CONNECTIONS//\//\\/}/" /opt/connect/conf/mirth.properties
@@ -210,6 +205,4 @@ case "$DATABASE" in
 		;;
 esac
 
-# chown -R mirth /opt/connect/appdata
-# exec gosu mirth "$@"
 exec "$@"

@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   mc:
-    image: nextgenconnect-public:3.8
+    image: nextgenhealthcare/connect:3.8
     name: 
     environment:
       - DATABASE=mysql
@@ -11,7 +11,7 @@ services:
       - DATABASE_PASSWORD=root_password
       - KEYSTORE_STOREPASS=docker_storepass
       - KEYSTORE_KEYPASS=docker_keypass
-      - VMOPTIONS=-Xmx512m,-Xmx768m
+      - VMOPTIONS=-Xmx512m
     volumes:
       - ~/Downloads/test_appdata:/opt/connect/appdata
     ports:

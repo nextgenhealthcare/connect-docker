@@ -1,12 +1,12 @@
 version: "3.1"
 services:
   mc:
-    image: nextgenconnect-public:3.8
+    image: nextgenhealthcare/connect:3.8
     environment:
       - DATABASE_MAX_CONNECTIONS=20
       - KEYSTORE_STOREPASS=docker_storepass
       - KEYSTORE_KEYPASS=docker_keypass
-      - VMOPTIONS=-Xmx512m,-Xmx768m
+      - VMOPTIONS=-Xmx512m
     volumes:
       - ~/Downloads/test_appdata:/opt/connect/appdata
       - ~/Downloads/custom_extensions:/opt/connect/custom-extensions

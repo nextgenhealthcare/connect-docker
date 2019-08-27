@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   mc:
-    image: nextgenconnect-public:3.8
+    image: nextgenhealthcare/connect:3.8
     environment:
       - DATABASE=postgres
       - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
@@ -10,8 +10,7 @@ services:
       - DATABASE_PASSWORD=mirthdb
       - KEYSTORE_STOREPASS=docker_storepass
       - KEYSTORE_KEYPASS=docker_keypass
-      # - MAX_HEAP_SIZE=1g
-      - VMOPTIONS=-Xmx512m,-Xmx768m
+      - VMOPTIONS=-Xmx512m
     volumes:
       - ~/Downloads/test_appdata:/opt/connect/appdata
       - ~/Downloads/custom_extensions:/opt/connect/custom-extensions
