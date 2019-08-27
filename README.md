@@ -11,6 +11,8 @@
    * [Other mirth.properties options](#other-mirth-properties-options)
  * [Using Docker Secrets](#using-docker-secrets)
  * [Using Volumes](#using-volumes)
+   * [The appdata folder](#the-appdata-folder)
+   * [Custom extensions](#custom-extensions)
 * [Examples](#examples)
 * [License](#license)
 
@@ -212,12 +214,73 @@ Examples:
 <a name="using-docker-secrets"></a>
 ## Using Docker Secrets [↑](#top)
 
-TODO
+For sensitive information such as the database/keystore credentials, instead of supplying them as environment variables you can use a [Docker Secret](https://docs.docker.com/engine/swarm/secrets/). There are two secret names this image supports:
+
+##### mirth_properties
+If present, any properties in this secret will be merged into the mirth.properties file.
+##### mcserver_vmoptions
+If present, any JVM options in this secret will be appended onto the mcserver.vmoptions file.
+
+Secrets are supported with [Docker Swarm](https://docs.docker.com/engine/swarm/secrets/), but you can also use them with [`docker-compose`](#using-docker-compose).
+
+For example let's say you wanted to set `keystore.storepass` and `keystore.keypass` in a secure way. You could create a new file, **secret.properties**:
+```
+keystore.storepass=changeme
+keystore.keypass=changeme
+```
+Then in your YAML docker-compose stack file:
+```yaml
+version: '3.1'
+services:
+  mc:
+    image: nextgenhealthcare/connect
+    environment:
+      - VMOPTIONS=-Xmx512m
+    secrets:
+      - mirth_properties
+    ports:
+      - 8080:8080/tcp
+      - 8443:8443/tcp
+secrets:
+  mirth_properties:
+    file: /local/path/to/secret.properties
+```
+The **secrets** section at the bottom specifies the local file location for each secret.  Change `/local/path/to/secret.properties` to the correct local path and filename.
+
+Inside the configuration for the Connect container there is also a **secrets** section that lists the secrets you want to include for that container.
 
 <a name="using-volumes"></a>
 ## Using Volumes [↑](#top)
 
-TODO
+<a name="the-appdata-folder"></a>
+#### The appdata folder [↑](#top)
+The application data directory (appdata) stores configuration files and temporary data created by Connect after starting up. This usually includes the keystore file and the `server.id` file that stores your server ID. If you are launching Connect as part of a stack/swarm, it's possible the container filesystem is already being preserved. But if not, you may want to consider mounting a **volume** to preserve the appdata folder.
+
+```bash
+docker run -v /local/path/to/appdata:/opt/connect/appdata -p 8443:8443 nextgenhealthcare/connect
+```
+The `-v` option makes a local directory from your filesystem available to the Docker container. Create a folder on your local filesystem, then change the `/local/path/to/appdata` part in the example above to the correct local path.
+
+You can also configure volumes as part of your docker-compose YAML stack file:
+```yaml
+version: '3.1'
+services:
+  mc:
+    image: nextgenhealthcare/connect
+    volumes:
+      - ~/Documents/appdata:/opt/connect/appdata
+```
+
+<a name="custom-extensions"></a>
+#### Custom extensions [↑](#top)
+The entrypoint script will automatically look for any ZIP files in the `/opt/connect/custom-extensions` folder and unzip them into the extensions folder before Connect starts up. So to launch Connect with any custom extensions, do this:
+
+```bash
+docker run -v /local/path/to/custom-extensions:/opt/connect/custom-extensions -p 8443:8443 nextgenhealthcare/connect
+```
+Create a folder on your local filesystem containing the ZIP files for your custom extensions. Then change the `/local/path/to/custom-extensions` part in the example above to the correct local path.
+
+As with the appdata example, you can also configure this volume as part of your docker-compose YAML file.
 
 <a name="examples"></a>
 # Examples [↑](#top)
