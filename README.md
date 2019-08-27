@@ -87,7 +87,28 @@ TODO
 ## Environment Variables [↑](#top)
 You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-38-user-guide.pdf).
 
-TODO
+To set environment variables, use the `-e` option for each variable on the command line:
+
+```bash
+docker run -e DATABASE='derby' -p 8443:8443 nextgenhealthcare/connect
+```
+
+You can also use a separate file containing all of your environment variables using the `--env-file` option:
+
+###### myenvfile.txt
+```
+DATABASE=postgres
+DATABASE_URL=jdbc:postgresql://serverip:5432/mirthdb
+DATABASE_USERNAME=postgres
+DATABASE_PASSWORD=postgres
+KEYSTORE_STOREPASS=changeme
+KEYSTORE_KEYPASS=changeme
+VMOPTIONS=-Xmx512m
+```
+
+```bash
+docker run --env-file=myenvfile.txt -p 8443:8443 nextgenhealthcare/connect
+```
 
 <a name="common-mirth-properties-options"></a>
 ### Common mirth.properties options [↑](#top)
@@ -138,7 +159,14 @@ A comma-separated list of JVM command-line options to place in the `.vmoptions` 
 <a name="other-mirth-properties-options"></a>
 ### Other mirth.properties options [↑](#top)
 
-TODO
+Other options in the mirth.properties file can also be changed. Any environment variable starting with the `_MP_` prefix will set the corresponding value in mirth.properties. Replace `.` with a single underscore `_` and `-` with two underscores `__`.
+
+Examples:
+
+* Set the server TLS protocols to only allow TLSv1.2 and 1.3:
+ * `_MP_HTTPS_SERVER_PROTOCOLS='TLSv1.3,TLSv1.2'`
+* Set the max connections for the read-only database connection pool:
+ * `_MP_DATABASE__READONLY_MAX__CONNECTIONS='20'`
 
 <a name="using-docker-secrets"></a>
 ## Using Docker Secrets [↑](#top)
