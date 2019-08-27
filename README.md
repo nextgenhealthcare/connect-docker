@@ -1,33 +1,38 @@
 # Supported tags and respective Dockerfile links
-* 3.8.0, latest
+
+##### Oracle OpenJDK 11 (Debian)
+* [3.8, 3.8.0, latest](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile)
+
+##### Oracle OpenJDK 11 with full JDK
+* [3.8-jdk, 3.8.0-jdk, latest-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-jdk)
+
+##### Zulu OpenJDK 11 (Alpine Linux)
+* [3.8-zulu-alpine, 3.8.0-zulu-alpine, latest-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine)
+
+##### Zulu OpenJDK 11 with full JDK
+* [3.8-zulu-alpine-jdk, 3.8.0-zulu-alpine-jdk, latest-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine-jdk)
+
+##### AdoptOpenJDK 11 with OpenJ9 (Alpine Linux)
+* [3.8-adoptopenjdk-openj9-alpine, 3.8.0-adoptopenjdk-openj9-alpine, latest-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine)
+
+##### AdoptOpenJDK 11 with OpenJ9 and full JDK
+* [3.8-adoptopenjdk-openj9-alpine-jdk, 3.8.0-adoptopenjdk-openj9-alpine-jdk, latest-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
 
 # Quick reference
+
 #### Where to get help:
-[Connect Forum](http://www.mirthcorp.com/community/forums/),
-[Slack Channel](https://mirthconnect.slack.com/),
-[Slack Registration](https://mirthconnect.herokuapp.com)
-#### Where to file issues:  
-[Issue Tracker (JIRA)](http://www.mirthcorp.com/community/issues)
-#### Maintained by: 
-NextGen Connect team
-#### Source of this description: 
-link to GitHub page
+* [Connect Forum](https://www.mirthcorp.com/community/forums)
+* [Slack Channel](https://mirthconnect.slack.com/)
+* [Slack Registration](https://mirthconnect.herokuapp.com)
+
+#### Where to file issues:
+* https://github.com/nextgenhealthcare/connect-docker/issues
 
 # What is NextGen Connect (formerly Mirth Connect)
-For more information and related downloads for NextGen Connect and other NextGen products, please visit:
+An open-source message integration engine focused on healthcare. For more information please visit our [GitHub page](https://github.com/nextgenhealthcare/connect).
+![](https://secure.gravatar.com/avatar/0ef900dca6d985a37122ff8db0a06cc2.jpg?s=160) ![](https://github.com/nextgenhealthcare/connect/raw/development/server/public_html/images/mirthconnectlogowide.png)
 
-https://www.nextgen.com/products-and-services/NextGen-Connect-Integration-Engine-Downloads
 
-![logo](https://qsinextgen.sharepoint.com/:i:/r/sites/compass-marketingandcommunications/Shared%20Documents/Logos/NextGen%20Logos/NG_Logo_Final_RGB_72.png?csf=1&e=pXwKd7)
-
-##### The NextGen Solutions Mission
-NextGen Solutions help many of the nation&apos;s largest, most respected healthcare entities streamline their care-management processes to satisfy the demands of a regulatory, competitive healthcare industry. With Mirth Solutions, NextGen Healthcare&apos;s goal is to provide the healthcare community with a secure, efficient, cost-effective means of sharing health information. The natural product of this aim is a family of applications &mdash; which includes NextGen Connect &mdash; flexible enough to manage patient information, from small practices to large HIEs, so our clients and users can work confidently and effectively within the healthcare-delivery system.
-##### About NextGen Connect
-Like an interpreter who translates foreign languages into the one you understand, NextGen Connect translates message standards into the one your system understands. Whenever a &quot;foreign&quot; system sends you a message, NextGen Connect&apos;s integration capabilities expedite the following:
-- Filtering &mdash; NextGen Connect reads message parameters and passes the message to or stops it on its way to the transformation stage.
-- Transformation &mdash; NextGen Connect converts the incoming message standard to another standard (e.g., HL7 to XML).
-- Extraction &mdash; NextGen Connect can &quot;pull&quot; data from and &quot;push&quot; data to a database.
-- Routing &mdash; NextGen Connect makes sure messages arrive at their assigned destinations.
 
 # How to use this image
 ## Start a Connect instance
