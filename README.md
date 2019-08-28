@@ -63,9 +63,7 @@
 # What is NextGen Connect (formerly Mirth Connect) [↑](#top)
 An open-source message integration engine focused on healthcare. For more information please visit our [GitHub page](https://github.com/nextgenhealthcare/connect).
 
-|   |   |
-| ------------ | ------------ |
-| ![](https://secure.gravatar.com/avatar/0ef900dca6d985a37122ff8db0a06cc2.jpg?s=160) | ![](https://github.com/nextgenhealthcare/connect/raw/development/server/public_html/images/mirthconnectlogowide.png) |
+<table><tr><td><img src="https://secure.gravatar.com/avatar/0ef900dca6d985a37122ff8db0a06cc2.jpg?s=160"/></td><td><img src="https://github.com/nextgenhealthcare/connect/raw/development/server/public_html/images/mirthconnectlogowide.png"/></td></tr></table>
 
 ------------
 
