@@ -12,8 +12,7 @@
     * [Using Docker Secrets](#using-docker-secrets)
     * [Using Volumes](#using-volumes)
         * [The appdata folder](#the-appdata-folder)
-        * [Custom extensions](#custom-extensions)
-* [Examples](#examples)
+        * [Additional extensions](#additional-extensions)
 * [License](#license)
 
 ------------
@@ -316,23 +315,16 @@ services:
 
 ------------
 
-<a name="custom-extensions"></a>
-#### Custom extensions [↑](#top)
-The entrypoint script will automatically look for any ZIP files in the `/opt/connect/custom-extensions` folder and unzip them into the extensions folder before Connect starts up. So to launch Connect with any custom extensions, do this:
+<a name="additional-extensions"></a>
+#### Additional extensions [↑](#top)
+The entrypoint script will automatically look for any ZIP files in the `/opt/connect/custom-extensions` folder and unzip them into the extensions folder before Connect starts up. So to launch Connect with any additional extensions not included in the base application, do this:
 
 ```bash
 docker run -v /local/path/to/custom-extensions:/opt/connect/custom-extensions -p 8443:8443 nextgenhealthcare/connect
 ```
-Create a folder on your local filesystem containing the ZIP files for your custom extensions. Then change the `/local/path/to/custom-extensions` part in the example above to the correct local path.
+Create a folder on your local filesystem containing the ZIP files for your additional extensions. Then change the `/local/path/to/custom-extensions` part in the example above to the correct local path.
 
 As with the appdata example, you can also configure this volume as part of your docker-compose YAML file.
-
-------------
-
-<a name="examples"></a>
-# Examples [↑](#top)
-
-TODO
 
 ------------
 
