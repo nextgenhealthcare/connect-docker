@@ -4,15 +4,15 @@
 * [Quick Reference](#quick-reference)
 * [What is NextGen Connect (formerly Mirth Connect)](#what-is-connect)
 * [How to use this image](#how-to-use)
- * [Start a Connect instance](#start-connect)
- * [Using `docker stack deploy` or `docker-compose`](#using-docker-compose)
- * [Environment Variables](#environment-variables)
-   * [Common mirth.properties options](#common-mirth-properties-options)
-   * [Other mirth.properties options](#other-mirth-properties-options)
- * [Using Docker Secrets](#using-docker-secrets)
- * [Using Volumes](#using-volumes)
-   * [The appdata folder](#the-appdata-folder)
-   * [Custom extensions](#custom-extensions)
+    * [Start a Connect instance](#start-connect)
+    * [Using `docker stack deploy` or `docker-compose`](#using-docker-compose)
+    * [Environment Variables](#environment-variables)
+        * [Common mirth.properties options](#common-mirth-properties-options)
+        * [Other mirth.properties options](#other-mirth-properties-options)
+    * [Using Docker Secrets](#using-docker-secrets)
+    * [Using Volumes](#using-volumes)
+        * [The appdata folder](#the-appdata-folder)
+        * [Custom extensions](#custom-extensions)
 * [Examples](#examples)
 * [License](#license)
 
@@ -53,9 +53,9 @@
 
 #### Where to file issues:
 * For issues relating to these Docker images:
- * https://github.com/nextgenhealthcare/connect-docker/issues
+    * https://github.com/nextgenhealthcare/connect-docker/issues
 * For issues relating to the Connect application itself:
- * http://www.mirthcorp.com/community/issues
+    * http://www.mirthcorp.com/community/issues
 
 ------------
 
@@ -235,16 +235,16 @@ Other options in the mirth.properties file can also be changed. Any environment 
 Examples:
 
 * Set the server TLS protocols to only allow TLSv1.2 and 1.3:
- * In the mirth.properties file:
-   * `https.server.protocols = TLSv1.3,TLSv1.2`
- * As a Docker environment variable:
-   * `_MP_HTTPS_SERVER_PROTOCOLS='TLSv1.3,TLSv1.2'`
+    * In the mirth.properties file:
+        * `https.server.protocols = TLSv1.3,TLSv1.2`
+    * As a Docker environment variable:
+        * `_MP_HTTPS_SERVER_PROTOCOLS='TLSv1.3,TLSv1.2'`
    
 * Set the max connections for the read-only database connection pool:
- * In the mirth.properties file:
-   * `database-readonly.max-connections = 20`
- * As a Docker environment variable:
-   * `_MP_DATABASE__READONLY_MAX__CONNECTIONS='20'`
+    * In the mirth.properties file:
+        * `database-readonly.max-connections = 20`
+    * As a Docker environment variable:
+        * `_MP_DATABASE__READONLY_MAX__CONNECTIONS='20'`
 
 ------------
 
