@@ -1,8 +1,12 @@
 #!/bin/bash
 set -e
 
-if [ -f /opt/connect/custom-extensions/*.zip ]; then
-    unzip '/opt/connect/custom-extensions/*.zip' -d /opt/connect/extensions
+custom_extension_count=`ls -1 /opt/connect/custom-extensions/*.zip 2>/dev/null | wc -l`
+if [ $custom_extension_count != 0 ]; then
+	echo "Found ${custom_extension_count} custom extensions."
+	for extension in $(ls -1 /opt/connect/custom-extensions/*.zip); do
+		unzip -q $extension -d /opt/connect/extensions
+	done
 fi
 
 # set storepass and keypass to 'changeme' so they aren't overwritten later
