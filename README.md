@@ -237,9 +237,16 @@ Other options in the mirth.properties file can also be changed. Any environment 
 Examples:
 
 * Set the server TLS protocols to only allow TLSv1.2 and 1.3:
- * `_MP_HTTPS_SERVER_PROTOCOLS='TLSv1.3,TLSv1.2'`
+ * In the mirth.properties file:
+   * `https.server.protocols = TLSv1.3,TLSv1.2`
+ * As a Docker environment variable:
+   * `_MP_HTTPS_SERVER_PROTOCOLS='TLSv1.3,TLSv1.2'`
+   
 * Set the max connections for the read-only database connection pool:
- * `_MP_DATABASE__READONLY_MAX__CONNECTIONS='20'`
+ * In the mirth.properties file:
+   * `database-readonly.max-connections = 20`
+ * As a Docker environment variable:
+   * `_MP_DATABASE__READONLY_MAX__CONNECTIONS='20'`
 
 ------------
 
