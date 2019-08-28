@@ -5,7 +5,7 @@ custom_extension_count=`ls -1 /opt/connect/custom-extensions/*.zip 2>/dev/null |
 if [ $custom_extension_count != 0 ]; then
 	echo "Found ${custom_extension_count} custom extensions."
 	for extension in $(ls -1 /opt/connect/custom-extensions/*.zip); do
-		unzip -q $extension -d /opt/connect/extensions
+		unzip -o -q $extension -d /opt/connect/extensions
 	done
 fi
 
@@ -115,6 +115,8 @@ while read -r keyvalue; do
 	fi
 done <<< "`printenv`"
 
+cp mcserver_base.vmoptions mcserver.vmoptions
+
 # merge vmoptions into /opt/connect/mcserver.vmoptions
 if ! [ -z "${VMOPTIONS+x}" ]; then
     PREV_IFS="$IFS"
@@ -122,12 +124,10 @@ if ! [ -z "${VMOPTIONS+x}" ]; then
 	read -ra vmoptions <<< "$VMOPTIONS"
 	IFS="$PREV_IFS"
 
-    echo "" >> /opt/connect/mcserver.vmoptions
     for vmoption in "${vmoptions[@]}"
     do
         echo "${vmoption}" >> /opt/connect/mcserver.vmoptions
     done
-    echo "" >> /opt/connect/mcserver.vmoptions
 fi
 
 # merge the user's secret mirth.properties
@@ -163,7 +163,7 @@ fi
 # merge the user's secret vmoptions
 # takes a whole mcserver.vmoptions file and merges line by line with /opt/connect/mcserver.vmoptions
 if [ -f /run/secrets/mcserver_vmoptions ]; then
-    (echo "" ; cat /run/secrets/mcserver_vmoptions ; echo "") >> /opt/connect/mcserver.vmoptions
+    (cat /run/secrets/mcserver_vmoptions ; echo "") >> /opt/connect/mcserver.vmoptions
 fi
 
 # if delay is set as an environment variable then wait that long in seconds
