@@ -16,6 +16,8 @@ RUN mkdir -p /opt/connect/appdata && chown -R mirth:mirth /opt/connect/appdata
 VOLUME /opt/connect/appdata
 VOLUME /opt/connect/custom-extensions
 WORKDIR /opt/connect
+RUN rm -rf cli-lib manager-lib \
+    && rm mirth-cli-launcher.jar mirth-manager-launcher.jar mccommand mcmanager
 RUN cat /opt/connect/docs/mcservice-java9+.vmoptions >> mcserver.vmoptions
 EXPOSE 8443
 
