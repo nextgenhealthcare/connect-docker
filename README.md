@@ -16,6 +16,8 @@
 * [Examples](#examples)
 * [License](#license)
 
+------------
+
 <a name="supported-tags"></a>
 # Supported tags and respective Dockerfile links [↑](#top)
 
@@ -37,16 +39,25 @@
 ##### AdoptOpenJDK 11 with OpenJ9 and full JDK
 * [3.8-adoptopenjdk-openj9-alpine-jdk, 3.8.0-adoptopenjdk-openj9-alpine-jdk, latest-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
 
+------------
+
 <a name="quick-reference"></a>
-# Quick reference [↑](#top)
+# Quick Reference [↑](#top)
 
 #### Where to get help:
+* [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-38-user-guide.pdf)
 * [Connect Forum](https://www.mirthcorp.com/community/forums)
-* [Slack Channel](https://mirthconnect.slack.com/)
-* [Slack Registration](https://mirthconnect.herokuapp.com)
+* [Slack Channel](https://mirthconnect.slack.com/) (register [here](https://mirthconnect.herokuapp.com))
+* [Connect GitHub](https://github.com/nextgenhealthcare/connect)
+* [Connect Docker GitHub](https://github.com/nextgenhealthcare/connect-docker)
 
 #### Where to file issues:
-* https://github.com/nextgenhealthcare/connect-docker/issues
+* For issues relating to these Docker images:
+ * https://github.com/nextgenhealthcare/connect-docker/issues
+* For issues relating to the Connect application itself:
+ * http://www.mirthcorp.com/community/issues
+
+------------
 
 <a name="what-is-connect"></a>
 # What is NextGen Connect (formerly Mirth Connect) [↑](#top)
@@ -55,6 +66,8 @@ An open-source message integration engine focused on healthcare. For more inform
 |   |   |
 | ------------ | ------------ |
 | ![](https://secure.gravatar.com/avatar/0ef900dca6d985a37122ff8db0a06cc2.jpg?s=160) | ![](https://github.com/nextgenhealthcare/connect/raw/development/server/public_html/images/mirthconnectlogowide.png) |
+
+------------
 
 <a name="how-to-use"></a>
 # How to use this image [↑](#top)
@@ -79,6 +92,8 @@ docker run --name myconnect -d -p 8443:8443 nextgenhealthcare/connect:3.8
 ```
 
 Look at the [Environment Variables](#environment-variables) section for more available configuration options.
+
+------------
 
 <a name="using-docker-compose"></a>
 ## Using [`docker stack deploy`](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [`docker-compose`](https://github.com/docker/compose) [↑](#top)
@@ -122,6 +137,8 @@ services:
 
 There are other example stack files in the [examples directory](https://github.com/nextgenhealthcare/connect-docker/tree/master/examples)!
 
+------------
+
 <a name="environment-variables"></a>
 ## Environment Variables [↑](#top)
 You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-38-user-guide.pdf).
@@ -132,9 +149,8 @@ To set environment variables, use the `-e` option for each variable on the comma
 docker run -e DATABASE='derby' -p 8443:8443 nextgenhealthcare/connect
 ```
 
-You can also use a separate file containing all of your environment variables using the `--env-file` option:
+You can also use a separate file containing all of your environment variables using the `--env-file` option. For example let's say you create a file **myenvfile.txt**:
 
-###### myenvfile.txt
 ```
 DATABASE=postgres
 DATABASE_URL=jdbc:postgresql://serverip:5432/mirthdb
@@ -149,9 +165,12 @@ VMOPTIONS=-Xmx512m
 docker run --env-file=myenvfile.txt -p 8443:8443 nextgenhealthcare/connect
 ```
 
+------------
+
 <a name="common-mirth-properties-options"></a>
 ### Common mirth.properties options [↑](#top)
 
+<a name="env-database"></a>
 #### `DATABASE`
 
 The database type to use for the NextGen Connect Integration Engine backend database. Options:
@@ -161,43 +180,54 @@ The database type to use for the NextGen Connect Integration Engine backend data
 * oracle
 * sqlserver
 
+<a name="env-database-url"></a>
 #### `DATABASE_URL`
 
 The JDBC URL to use when connecting to the database. For example:
 * `jdbc:postgresql://serverip:5432/mirthdb`
 
+<a name="env-database-username"></a>
 #### `DATABASE_USERNAME`
 
 The username to use when connecting to the database. If you don't want to use an environment variable to store sensitive information like this, look at the [Using Docker Secrets](#using-docker-secrets) section below.
 
+<a name="env-database-password"></a>
 #### `DATABASE_PASSWORD`
 
 The password to use when connecting to the database. If you don't want to use an environment variable to store sensitive information like this, look at the [Using Docker Secrets](#using-docker-secrets) section below.
 
+<a name="env-database-max-connections"></a>
 #### `DATABASE_MAX_CONNECTIONS`
 
 The maximum number of connections to use for the internal messaging engine connection pool.
 
+<a name="env-keystore-storepass"></a>
 #### `KEYSTORE_STOREPASS`
 
 The password for the keystore file itself. If you don't want to use an environment variable to store sensitive information like this, look at the [Using Docker Secrets](#using-docker-secrets) section below.
 
+<a name="env-keystore-keypass"></a>
 #### `KEYSTORE_KEYPASS`
 
 The password for the keys within the keystore, including the server certificate and the secret encryption key. If you don't want to use an environment variable to store sensitive information like this, look at the [Using Docker Secrets](#using-docker-secrets) section below.
 
+<a name="env-session-store"></a>
 #### `SESSION_STORE`
 
 If set to true, the web server sessions are stored in the database. This can be useful in situations where you have multiple Connect servers (connecting to the same database) clustered behind a load balancer.
 
+<a name="env-vmoptions"></a>
 #### `VMOPTIONS`
 
 A comma-separated list of JVM command-line options to place in the `.vmoptions` file. For example to set the max heap size:
 * -Xmx512m
 
+<a name="env-delay"></a>
 #### `DELAY`
 
 This tells the entrypoint script to wait for a certain amount of time (in seconds). The entrypoint script will automatically use a command-line SQL client to check connectivity and wait until the database is up before starting Connect, but only when using PostgreSQL or MySQL. If you are using Oracle or SQL Server and the database is being started up at the same time as Connect, you may want to use this option to tell Connect to wait a bit to allow the database time to startup.
+
+------------
 
 <a name="other-mirth-properties-options"></a>
 ### Other mirth.properties options [↑](#top)
@@ -211,6 +241,8 @@ Examples:
 * Set the max connections for the read-only database connection pool:
  * `_MP_DATABASE__READONLY_MAX__CONNECTIONS='20'`
 
+------------
+
 <a name="using-docker-secrets"></a>
 ## Using Docker Secrets [↑](#top)
 
@@ -220,6 +252,8 @@ For sensitive information such as the database/keystore credentials, instead of 
 If present, any properties in this secret will be merged into the mirth.properties file.
 ##### mcserver_vmoptions
 If present, any JVM options in this secret will be appended onto the mcserver.vmoptions file.
+
+------------
 
 Secrets are supported with [Docker Swarm](https://docs.docker.com/engine/swarm/secrets/), but you can also use them with [`docker-compose`](#using-docker-compose).
 
@@ -249,6 +283,8 @@ The **secrets** section at the bottom specifies the local file location for each
 
 Inside the configuration for the Connect container there is also a **secrets** section that lists the secrets you want to include for that container.
 
+------------
+
 <a name="using-volumes"></a>
 ## Using Volumes [↑](#top)
 
@@ -271,6 +307,8 @@ services:
       - ~/Documents/appdata:/opt/connect/appdata
 ```
 
+------------
+
 <a name="custom-extensions"></a>
 #### Custom extensions [↑](#top)
 The entrypoint script will automatically look for any ZIP files in the `/opt/connect/custom-extensions` folder and unzip them into the extensions folder before Connect starts up. So to launch Connect with any custom extensions, do this:
@@ -282,10 +320,14 @@ Create a folder on your local filesystem containing the ZIP files for your custo
 
 As with the appdata example, you can also configure this volume as part of your docker-compose YAML file.
 
+------------
+
 <a name="examples"></a>
 # Examples [↑](#top)
 
 TODO
+
+------------
 
 <a name="license"></a>
 # License [↑](#top)
