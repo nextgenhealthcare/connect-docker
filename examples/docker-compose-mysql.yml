@@ -1,0 +1,30 @@
+version: "3.1"
+services:
+  mc:
+    image: nextgenhealthcare/connect:3.8
+    name: 
+    environment:
+      - DATABASE=mysql
+      - DATABASE_URL=jdbc:mysql://db:3306/mirthdb
+      - DATABASE_MAX_CONNECTIONS=20
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=root_password
+      - KEYSTORE_STOREPASS=docker_storepass
+      - KEYSTORE_KEYPASS=docker_keypass
+      - VMOPTIONS=-Xmx512m
+    volumes:
+      - ~/Documents/connect-docker/appdata:/opt/connect/appdata
+    ports:
+      - 8080:8080/tcp
+      - 8443:8443/tcp
+    depends_on:
+      - db
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=mirthdb
+      - MYSQL_ROOT_HOST=%
+    expose:
+      - 3306
