@@ -18,7 +18,7 @@ VOLUME /opt/connect/custom-extensions
 WORKDIR /opt/connect
 RUN rm -rf cli-lib manager-lib \
     && rm mirth-cli-launcher.jar mirth-manager-launcher.jar mccommand mcmanager
-RUN cat /opt/connect/docs/mcservice-java9+.vmoptions >> mcserver.vmoptions
+RUN (cat mcserver.vmoptions /opt/connect/docs/mcservice-java9+.vmoptions ; echo "") > mcserver_base.vmoptions
 EXPOSE 8443
 
 COPY entrypoint.sh /
