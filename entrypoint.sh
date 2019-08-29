@@ -74,7 +74,7 @@ fi
 while read -r keyvalue; do
 	KEY="${keyvalue%%=*}"
 	VALUE="${keyvalue#*=}"
-	VALUE=$(tr -dc '[[:print:]]' <<< "$VALUE")
+	VALUE=$(tr -dc '\40-\176' <<< "$VALUE")
 
 	if ! [ -z "${KEY}" ] && ! [ -z "${VALUE}" ] && ! [[ ${VALUE} =~ ^\ +$ ]]; then
 
