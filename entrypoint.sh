@@ -174,14 +174,16 @@ fi
 # check if DB is up
 # use the db type to attempt to connect to the db before starting connect to prevent connect from trying to start before the db is up
 # get the database properties from mirth.properties
-db=$(grep "^database\s*=" /opt/connect/conf/mirth.properties | sed -e 's/.*=\s*\(.*\)/\1/')
-dbusername=$(grep "^database.username" /opt/connect/conf/mirth.properties | sed -e 's/.*=\s*\(.*\)/\1/')
-dbpassword=$(grep "^database.password" /opt/connect/conf/mirth.properties | sed -e 's/.*=\s*\(.*\)/\1/')
-dburl=$(grep "^database.url" /opt/connect/conf/mirth.properties | sed -e 's/.*=\s*\(.*\)/\1/')
+db=$(grep "^database\s*=" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
+dbusername=$(grep "^database.username" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
+dbpassword=$(grep "^database.password" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
+dburl=$(grep "^database.url" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
 
-# parse host and port
-dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
-dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
+if [ $db == "postgres" ] || [ $db == "mysql" ]; then
+	# parse host and port
+	dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
+	dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
+fi
 
 count=0
 case "$db" in
