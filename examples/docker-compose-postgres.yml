@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   mc:
-    image: nextgenhealthcare/connect:3.8
+    image: nextgenhealthcare/connect
     environment:
       - DATABASE=postgres
       - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
@@ -13,10 +13,6 @@ services:
       - VMOPTIONS=-Xmx512m
     volumes:
       - ~/Documents/connect-docker/appdata:/opt/connect/appdata
-      - ~/Documents/connect-docker/custom_extensions:/opt/connect/custom-extensions
-    secrets:
-      - mirth_properties
-      - mcserver_vmoptions
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp
@@ -30,9 +26,3 @@ services:
       - POSTGRES_DB=mirthdb
     expose:
       - 5432
-
-secrets:
-  mirth_properties:
-    file: ~/Documents/connect-docker/secret.properties
-  mcserver_vmoptions:
-    file: ~/Documents/connect-docker/secret.vmoptions

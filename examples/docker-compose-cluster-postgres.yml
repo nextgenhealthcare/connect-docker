@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   mc1:
-    image: nextgenhealthcare/connect:3.8
+    image: nextgenhealthcare/connect
     environment:
       - DATABASE=postgres
       - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
@@ -14,10 +14,6 @@ services:
       - VMOPTIONS=-Xmx512m
     volumes:
       - ~/Documents/connect-docker/appdata1:/opt/connect/appdata
-      - ~/Documents/connect-docker/custom_extensions:/opt/connect/custom-extensions
-    secrets:
-      - mirth_properties
-      - mcserver_vmoptions
     expose:
       - 8080
       - 8443
@@ -26,7 +22,7 @@ services:
     depends_on:
       - db
   mc2:
-    image: nextgenhealthcare/connect:3.8
+    image: nextgenhealthcare/connect
     environment:
       - DATABASE=postgres
       - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
@@ -40,10 +36,6 @@ services:
       - VMOPTIONS=-Xmx512m
     volumes:
       - ~/Documents/connect-docker/appdata2:/opt/connect/appdata
-      - ~/Documents/connect-docker/custom_extensions:/opt/connect/custom-extensions
-    secrets:
-      - mirth_properties
-      - mcserver_vmoptions
     expose:
       - 8080
       - 8443
@@ -56,7 +48,6 @@ services:
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp
-      - 9500:9500/tcp
     volumes:
       - ~/Documents/connect-docker/haproxy:/usr/local/etc/haproxy:ro
     depends_on:
@@ -70,9 +61,3 @@ services:
       - POSTGRES_DB=mirthdb
     expose:
       - 5432
-
-secrets:
-  mirth_properties:
-    file: ~/Documents/connect-docker/secret.properties
-  mcserver_vmoptions:
-    file: ~/Documents/connect-docker/secret.vmoptions
