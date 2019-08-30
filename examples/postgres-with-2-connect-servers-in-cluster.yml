@@ -13,10 +13,11 @@ services:
       - SESSION_STORE=true
       - VMOPTIONS=-Xmx512m
     volumes:
-      - ~/Documents/connect-docker/appdata1:/opt/connect/appdata
+      - ./data/volumes/appdata1:/opt/connect/appdata
     expose:
       - 8080
       - 8443
+      - 9001
     ports:
       - 8441:8443/tcp
     depends_on:
@@ -35,10 +36,11 @@ services:
       - DELAY=10
       - VMOPTIONS=-Xmx512m
     volumes:
-      - ~/Documents/connect-docker/appdata2:/opt/connect/appdata
+      - ./data/volumes/appdata2:/opt/connect/appdata
     expose:
       - 8080
       - 8443
+      - 9001
     ports:
       - 8442:8443/tcp
     depends_on:
@@ -48,8 +50,9 @@ services:
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp
+      - 9001:9001/tcp
     volumes:
-      - ~/Documents/connect-docker/haproxy:/usr/local/etc/haproxy:ro
+      - ./data/volumes/haproxy:/usr/local/etc/haproxy:ro
     depends_on:
       - mc1
       - mc2
