@@ -173,18 +173,22 @@ fi
 
 # check if DB is up
 # use the db type to attempt to connect to the db before starting connect to prevent connect from trying to start before the db is up
-if ! [ -z "${DATABASE+x}" ]; then
-    # parse host
-    dbhost=$(echo $DATABASE_URL | sed -e 's/.*\/\/\(.*\):.*/\1/')
+# get the database properties from mirth.properties
+db=$(grep "^database\s*=" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
+dbusername=$(grep "^database.username" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
+dbpassword=$(grep "^database.password" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
+dburl=$(grep "^database.url" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
 
-    # parse port
-    dbport=$(echo $DATABASE_URL | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
+if [ $db == "postgres" ] || [ $db == "mysql" ]; then
+	# parse host and port
+	dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
+	dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
 fi
 
 count=0
-case "$DATABASE" in
+case "$db" in
 	"postgres" )
-		until echo $DATABASE_PASSWORD | psql -h "$dbhost" -p "$dbport" -U "$DATABASE_USERNAME" -c '\l' >/dev/null 2>&1; do
+		until echo $dbpassword | psql -h "$dbhost" -p "$dbport" -U "$dbusername" -c '\l' >/dev/null 2>&1; do
 			let count=count+1
 			if [ $count -gt 30 ]; then
 				echo "Postgres is unavailable. Aborting."
@@ -195,7 +199,7 @@ case "$DATABASE" in
 		;;
 	"mysql" )
         echo "trying to connect to mysql"
-		until echo $DATABASE_PASSWORD | mysql -h "$dbhost" -p -P "$dbport" -u "$DATABASE_USERNAME" -e 'SHOW DATABASES' >/dev/null 2>&1; do
+		until echo $dbpassword | mysql -h "$dbhost" -p -P "$dbport" -u "$dbusername" -e 'SHOW DATABASES' >/dev/null 2>&1; do
 			let count=count+1
 			if [ $count -gt 50 ]; then
 				echo "MySQL is unavailable. Aborting."
