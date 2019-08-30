@@ -117,6 +117,9 @@ done <<< "`printenv`"
 
 cp mcserver_base.vmoptions mcserver.vmoptions
 
+# Address reflective access by Jackson
+echo "--add-opens=java.desktop/java.awt.color=ALL-UNNAMED" >> mcserver.vmoptions
+
 # merge vmoptions into /opt/connect/mcserver.vmoptions
 if ! [ -z "${VMOPTIONS+x}" ]; then
     PREV_IFS="$IFS"
