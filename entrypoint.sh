@@ -183,10 +183,14 @@ dbpassword=$(grep "^database.password" /opt/connect/conf/mirth.properties | sed 
 dburl=$(grep "^database.url" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
 
 if [ $db == "postgres" ] || [ $db == "mysql" ]; then
-	# parse host and port
+	# parse host, port, and name
 	dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
 	dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
-	dbname=$(echo $dburl | sed -e 's/.*\///')
+	if [[ $dburl =~ "?" ]]; then
+		dbname=$(echo "${dburl}" | sed -e "s/.*${dbport}\/\(.*\)?.*/\1/")
+	else
+		dbname=$(echo "${dburl}" | sed -e "s/.*${dbport}\///")
+	fi
 fi
 
 count=0
