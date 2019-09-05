@@ -186,12 +186,13 @@ if [ $db == "postgres" ] || [ $db == "mysql" ]; then
 	# parse host and port
 	dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
 	dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
+	dbname=$(echo $dburl | sed -e 's/.*\///')
 fi
 
 count=0
 case "$db" in
 	"postgres" )
-		until echo $dbpassword | psql -h "$dbhost" -p "$dbport" -U "$dbusername" -c '\l' >/dev/null 2>&1; do
+		until echo $dbpassword | psql -h "$dbhost" -p "$dbport" -U "$dbusername" -d "$dbname" -c '\l' >/dev/null 2>&1; do
 			let count=count+1
 			if [ $count -gt 30 ]; then
 				echo "Postgres is unavailable. Aborting."
