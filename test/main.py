@@ -19,7 +19,7 @@ def main():
     if (not image) and (not tag):
         # without any argument, will run for all latest JRE images
         image = "nextgenhealthcare/connect"
-        tags = ["latest","latest-zulu-alpine","latest-adoptopenjdk-openj9-alpine"]
+        tags = ["latest","latest-jdk","latest-zulu-alpine","latest-zulu-alpine-jdk","latest-adoptopenjdk-openj9-alpine","latest-adoptopenjdk-openj9-alpine-jdk"]
     elif not image: 
         image = "nextgenhealthcare/connect"
     elif not tag:

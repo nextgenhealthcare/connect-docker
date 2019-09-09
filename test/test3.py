@@ -8,7 +8,7 @@ from utils import DockerUtil
 SCENARIO 3 - using docker-compose
 using secret to input license key,database username/password, keystore/keypass
     Verify keystore in mirth.properties
-    Verify extensions - auth,email,history plugin.xml are in extensions folder of container
+    Verify extensions - plugin.xml are in container /opt/connect/extensions/testExtension1,2,3
     Verify containers running with server started and postgres db
 """
 class DockerTests3(unittest.TestCase):
@@ -55,18 +55,20 @@ class DockerTests3(unittest.TestCase):
 
     # REMOVE IF NOT USING EXTENSIONS
     def test_custom_extensions(self):
-        # Verify auth,email,history in extensions folder
+        # Verify plugin.xml file for each test Extensions in MC extensions folder
         exts = self.__class__.extensions_list
-        self.assertTrue(("extensions/auth/plugin.xml" in exts) and ("extensions/email/plugin.xml" in exts) and ("extensions/history/plugin.xml" in exts))
+        self.assertTrue(("extensions/testExtension3/plugin.xml" in exts) and ("extensions/testExtension2/plugin.xml" in exts) and ("extensions/testExtension1/plugin.xml" in exts))
 
-    # REMOVE IF NOT USING EXTENSIONS
-    def test_license_key_activation(self):
-        # Verify MC started with license key activation
-        self.assertTrue(DockerUtil.check_container_log(self.__class__.container,"Activated a new machine"))
+    # REMOVE IF NOT USING LICENSE KEY
+    # def test_license_key_activation(self):
+    #     # Verify MC started with license key activation
+    #     self.assertTrue(DockerUtil.check_container_log(self.__class__.container,"Activated a new machine"))
 
     @classmethod
     def tearDownClass(cls):
         # clean up at the end of the test
         os.system(cls.composeCmd + " down")
-        DockerUtil.empty_test_folder("tmp") 
+        DockerUtil.empty_test_folder("tmp")
+        cls.mirth_properties_map = {}
+        cls.extensions_list = [] 
     

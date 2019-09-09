@@ -57,3 +57,5 @@ class DockerTests1(unittest.TestCase):
         # clean up at the end of the test
         cls.container.stop()
         cls.container.remove() 
+        cls.mirth_properties_map = {}
+        cls.vmoptions_array = []
