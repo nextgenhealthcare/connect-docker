@@ -28,9 +28,9 @@ class DockerTests2(unittest.TestCase):
         # run docker image with -v option
         client = docker.from_env()
         cls.container = client.containers.run(cls.docker_image,volumes=mount,detach=True,name="mctest2")
-        # verify MC is up after 30sec
+        # wait for MC to come up
         try:
-            DockerUtil.wait_for_containers([cls.container], 30)
+            DockerUtil.wait_for_containers([cls.container], 60)
         except Exception, e:
             print(">>>> MC server failed to start")
             cls.tearDownClass()

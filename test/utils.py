@@ -20,7 +20,7 @@ class DockerUtil():
 
     @classmethod
     def wait_for_containers(cls, containers, timeout):
-        # wait 30sec till MC container is up             
+        # wait a max of <timeout> for MC to start within <container>
         for container in containers:
             while not cls.connect_is_up(container):
                 timeout -= 1

@@ -29,9 +29,9 @@ class DockerTests1(unittest.TestCase):
             ],
             detach=True, 
             name="mctest1")
-        # verify MC is up after 30sec
+        # wait for MC to come up
         try:
-            DockerUtil.wait_for_containers([cls.container], 30)
+            DockerUtil.wait_for_containers([cls.container], 60)
         except Exception, e:
             print(">>>> MC server failed to start")
             cls.tearDownClass()
