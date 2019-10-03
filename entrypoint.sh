@@ -183,15 +183,20 @@ dbpassword=$(grep "^database.password" /opt/connect/conf/mirth.properties | sed 
 dburl=$(grep "^database.url" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
 
 if [ $db == "postgres" ] || [ $db == "mysql" ]; then
-	# parse host and port
+	# parse host, port, and name
 	dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
 	dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
+	if [[ $dburl =~ "?" ]]; then
+		dbname=$(echo "${dburl}" | sed -e "s/.*${dbport}\/\(.*\)?.*/\1/")
+	else
+		dbname=$(echo "${dburl}" | sed -e "s/.*${dbport}\///")
+	fi
 fi
 
 count=0
 case "$db" in
 	"postgres" )
-		until echo $dbpassword | psql -h "$dbhost" -p "$dbport" -U "$dbusername" -c '\l' >/dev/null 2>&1; do
+		until echo $dbpassword | psql -h "$dbhost" -p "$dbport" -U "$dbusername" -d "$dbname" -c '\l' >/dev/null 2>&1; do
 			let count=count+1
 			if [ $count -gt 30 ]; then
 				echo "Postgres is unavailable. Aborting."
