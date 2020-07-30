@@ -207,9 +207,11 @@ case "$db" in
 		;;
 	"mysql" )
         echo "trying to connect to mysql"
-		until echo $dbpassword | mysql -h "$dbhost" -p -P "$dbport" -u "$dbusername" -e 'SHOW DATABASES' >/dev/null 2>&1; do
+		until mysql -h "$dbhost" -p$dbpassword -P "$dbport" -u "$dbusername" -e 'SHOW DATABASES' >/dev/null 2>&1; do
 			let count=count+1
 			if [ $count -gt 50 ]; then
+				# show the error
+				mysql -h "$dbhost" -p$dbpassword -P "$dbport" -u "$dbusername" -e 'SHOW DATABASES'
 				echo "MySQL is unavailable. Aborting."
 				exit 1
 			fi
