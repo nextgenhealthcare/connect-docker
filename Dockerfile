@@ -1,6 +1,10 @@
 FROM openjdk:11-jre
 
-RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales postgresql-client default-mysql-client \
+COPY mysql-apt-config_0.8.15-1_all.deb /tmp/
+
+RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales postgresql-client lsb-release \
+    && echo 4 | dpkg -i /tmp/mysql-apt-config_0.8.15-1_all.deb \
+    && apt-get update && apt-get install -y mysql-community-client \
     && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
