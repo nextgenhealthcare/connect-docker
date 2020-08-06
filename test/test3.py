@@ -17,6 +17,7 @@ class DockerTests3(unittest.TestCase):
     mirth_properties_map = {}
     extensions_list = []
     composeCmd = 'docker-compose -f ./tmp/test.yml -p mctest3'
+    max_wait_time = 240
 
     @classmethod
     def setUpClass(cls):
@@ -34,7 +35,7 @@ class DockerTests3(unittest.TestCase):
         cls.container = client.containers.get("mctest3_mc_1")
         # wait for MC to come up
         try:
-            DockerUtil.wait_for_containers([cls.container], 60)
+            DockerUtil.wait_for_containers([cls.container], cls.max_wait_time)
         except Exception, e:
             print(">>>> MC server failed to start")
             cls.tearDownClass()
@@ -70,5 +71,4 @@ class DockerTests3(unittest.TestCase):
         os.system(cls.composeCmd + " down")
         DockerUtil.empty_test_folder("tmp")
         cls.mirth_properties_map = {}
-        cls.extensions_list = [] 
-    
+        cls.extensions_list = []

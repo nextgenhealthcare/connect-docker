@@ -15,6 +15,7 @@ class DockerTests1(unittest.TestCase):
     container = ""
     mirth_properties_map = {}
     vmoptions_array = []
+    max_wait_time = 240
 
     @classmethod
     def setUpClass(cls):
@@ -31,7 +32,7 @@ class DockerTests1(unittest.TestCase):
             name="mctest1")
         # wait for MC to come up
         try:
-            DockerUtil.wait_for_containers([cls.container], 60)
+            DockerUtil.wait_for_containers([cls.container], cls.max_wait_time)
         except Exception, e:
             print(">>>> MC server failed to start")
             cls.tearDownClass()
