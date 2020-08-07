@@ -13,6 +13,7 @@ Docker run with -v to mount volume but no extensiosn
 class DockerTests2(unittest.TestCase):
     docker_image = ""
     container = ""
+    max_wait_time = 240
 
     @classmethod
     def setUpClass(cls):
@@ -30,7 +31,7 @@ class DockerTests2(unittest.TestCase):
         cls.container = client.containers.run(cls.docker_image,volumes=mount,detach=True,name="mctest2")
         # wait for MC to come up
         try:
-            DockerUtil.wait_for_containers([cls.container], 60)
+            DockerUtil.wait_for_containers([cls.container], cls.max_wait_time)
         except Exception, e:
             print(">>>> MC server failed to start")
             cls.tearDownClass()
@@ -46,4 +47,4 @@ class DockerTests2(unittest.TestCase):
         # clean up at the end of the test
         cls.container.stop()
         cls.container.remove()
-        DockerUtil.empty_test_folder("tmp") 
+        DockerUtil.empty_test_folder("tmp")
