@@ -375,6 +375,26 @@ As with the appdata example, you can also configure this volume as part of your 
 
 ------------
 
+## Known Limitations
+
+Currently, only the Debian flavored images support the newest authentication scheme in MySQL 8. All others (the Alpine based images) will need the following to force the MySQL database container to start using the old authentication scheme:
+
+```yaml
+command: --default-authentication-plugin=mysql_native_password
+```
+
+Example:
+
+```yaml
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      ...
+```
+
+------------
+
 <a name="license"></a>
 # License [↑](#top)
 
