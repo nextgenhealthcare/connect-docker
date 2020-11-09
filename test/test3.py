@@ -21,7 +21,7 @@ class DockerTests3(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        print(' \n >>>> ==== Running Test 3 - Verify Compose with secret, postgres, custom-extensions') 
+        print(' \n >>>> ==== Running Test 3 - Verify Compose with secret, postgres, custom-extensions' + ' ===== ') 
         print( ' >>>> ==== using IMAGE = ' + cls.docker_image + ' ===== ')
         DockerUtil.empty_test_folder("tmp")
         # Setup test dir as volume to by mounted by container

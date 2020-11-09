@@ -20,7 +20,7 @@ class DockerTests1(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # run docker image with 2 environment variables
-        print(' \n >>>> ==== Running Test 1 - Verify Environment Variables')
+        print(' \n >>>> ==== Running Test 1 - Verify Environment Variables' + ' ===== ')
         print(' >>>> ==== using IMAGE = ' + cls.docker_image + ' ===== ')
         client = docker.from_env()
         cls.container = client.containers.run(cls.docker_image, 
