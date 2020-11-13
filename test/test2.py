@@ -17,7 +17,7 @@ class DockerTests2(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        print(' \n >>>> ==== Running Test 2 - Verify Mounted Volume')
+        print(' \n >>>> ==== Running Test 2 - Verify Mounted Volume' + ' ===== ')
         print(' >>>> ==== using IMAGE = ' + cls.docker_image + ' ===== ')
         DockerUtil.empty_test_folder("tmp")
         # Setup test dir as volume to by mounted by container
