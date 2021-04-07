@@ -16,11 +16,8 @@ class DockerTests3(unittest.TestCase):
     container = ""
     mirth_properties_map = {}
     extensions_list = []
-    composeCmd = ''
-    if os.name == 'nt':
-        composeCmd = 'docker-compose -f .\\tmp\\test_windows.yml -p mctest3'
-    else:
-        composeCmd = 'docker-compose -f ./tmp/test.yml -p mctest3'
+    test_yml = os.path.join('.','tmp','test.yml')
+    composeCmd = 'docker-compose -f '+ test_yml +' -p mctest3'
     max_wait_time = 240
 
     @classmethod
@@ -34,12 +31,11 @@ class DockerTests3(unittest.TestCase):
             DockerUtil.create_test_dir("tmp\\exts")
             os.system('copy /y .\\testdata\\*.zip .\\tmp\\exts')
             os.system('copy /y .\\testdata\\secret.properties .\\tmp')
-            DockerUtil.generate_compose_yml('.\\tmp\\test_windows.yml',cls.docker_image)
         else:
             DockerUtil.create_test_dir("tmp/exts")
             os.system('cp ./testdata/*.zip ./tmp/exts/')
             os.system('cp ./testdata/secret.properties ./tmp/')
-            DockerUtil.generate_compose_yml('./tmp/test.yml',cls.docker_image)
+        DockerUtil.generate_compose_yml(cls.test_yml,cls.docker_image)
         # Run docker compose        
         os.system(cls.composeCmd + " up -d")
         client = docker.from_env()
