@@ -16,7 +16,11 @@ class DockerTests3(unittest.TestCase):
     container = ""
     mirth_properties_map = {}
     extensions_list = []
-    composeCmd = 'docker-compose -f ./tmp/test.yml -p mctest3'
+    composeCmd = ''
+    if os.name == 'nt':
+        composeCmd = 'docker-compose -f .\\tmp\\test_windows.yml -p mctest3'
+    else:
+        composeCmd = 'docker-compose -f ./tmp/test.yml -p mctest3'
     max_wait_time = 240
 
     @classmethod
@@ -25,10 +29,17 @@ class DockerTests3(unittest.TestCase):
         print( ' >>>> ==== using IMAGE = ' + cls.docker_image + ' ===== ')
         DockerUtil.empty_test_folder("tmp")
         # Setup test dir as volume to by mounted by container
-        exts =  DockerUtil.create_test_dir("tmp/exts")
-        os.system('cp ./testdata/*.zip ./tmp/exts/')
-        os.system('cp ./testdata/secret.properties ./tmp/')
-        DockerUtil.generate_compose_yml('./tmp/test.yml',cls.docker_image)
+        # exts =  DockerUtil.create_test_dir("tmp/exts")
+        if os.name == 'nt':
+            DockerUtil.create_test_dir("tmp\\exts")
+            os.system('copy /y .\\testdata\\*.zip .\\tmp\\exts')
+            os.system('copy /y .\\testdata\\secret.properties .\\tmp')
+            DockerUtil.generate_compose_yml('.\\tmp\\test_windows.yml',cls.docker_image)
+        else:
+            DockerUtil.create_test_dir("tmp/exts")
+            os.system('cp ./testdata/*.zip ./tmp/exts/')
+            os.system('cp ./testdata/secret.properties ./tmp/')
+            DockerUtil.generate_compose_yml('./tmp/test.yml',cls.docker_image)
         # Run docker compose        
         os.system(cls.composeCmd + " up -d")
         client = docker.from_env()

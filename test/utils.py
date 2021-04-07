@@ -11,7 +11,12 @@ class DockerUtil():
     @classmethod
     def generate_compose_yml(cls, destfile, image):
         # generate yml file used test scenario3
-        with open('./testdata/test.yml','r') as f:
+        yml_loc = ''
+        if os.name == 'nt':
+            yml_loc = '.\\testdata\\test.yml'
+        else:
+            yml_loc = './testdata/test.yml'
+        with open(yml_loc,'r') as f:
             data = yaml.safe_load(f)
         data['services']['mc']['image'] = image
         # write to destination file, expect full path to file
@@ -133,14 +138,22 @@ class DockerUtil():
     @classmethod
     def empty_test_folder(cls, name):
         # empty test folder on local host
-        local_path = os.getcwd() + "/" + name + "/" 
+        local_path = ''
+        if os.name == 'nt':
+            local_path = os.getcwd() + '\\' + name + '\\'
+        else:
+            local_path = os.getcwd() + "/" + name + "/"
         if os.path.isdir(local_path):
             shutil.rmtree(local_path)
     
     @classmethod
     def create_test_dir(cls, name):
         # create test folder on local host
-        local_path = os.getcwd() + "/" + name + "/" 
+        local_path = ''
+        if os.name == 'nt':
+            local_path = os.getcwd() + '\\' + name + '\\'
+        else:
+            local_path = os.getcwd() + "/" + name + "/"
         directory = os.path.dirname(local_path)
         print("Create test directory at " + local_path)
         if not os.path.exists(directory):
@@ -150,7 +163,11 @@ class DockerUtil():
     @classmethod
     def list_test_dir(cls, name):
         # list directory content on local host
-        local_path = os.getcwd() + "/" + name + "/" 
+        local_path = ''
+        if os.name == 'nt':
+            local_path = os.getcwd() + '\\' + name + '\\'
+        else:
+            local_path = os.getcwd() + "/" + name + "/"
         dirs = os.listdir(local_path)
         return dirs
 
