@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import docker
 import unittest
+import os
 from utils import DockerUtil
 
 """ 
@@ -21,8 +22,8 @@ class DockerTests2(unittest.TestCase):
         print(' >>>> ==== using IMAGE = ' + cls.docker_image + ' ===== ')
         DockerUtil.empty_test_folder("tmp")
         # Setup test dir as volume to by mounted by container
-        appdata = DockerUtil.create_test_dir("tmp/appdata")
-        exts =  DockerUtil.create_test_dir("tmp/extensions")
+        appdata = DockerUtil.create_test_dir(os.path.join('tmp','appdata'))
+        exts =  DockerUtil.create_test_dir(os.path.join('tmp','extensions'))
         mount={}
         mount[appdata]= { 'bind':'/opt/connect/appdata', 'mode':'rw'}
         mount[exts]= {'bind':'/opt/connect/custom-extensions','mode':'ro'}
@@ -39,7 +40,7 @@ class DockerTests2(unittest.TestCase):
 
     def test_mounted_appdata(self):
         # Verify appdata is populated with files
-        count = len(DockerUtil.list_test_dir("tmp/appdata/"))
+        count = len(DockerUtil.list_test_dir(os.path.join('tmp','appdata','')))
         self.assertGreaterEqual(5, count)
 
     @classmethod
