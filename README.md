@@ -191,7 +191,7 @@ There are other example stack files in the [examples directory](https://github.c
 <a name="environment-variables"></a>
 ## Environment Variables [↑](#top)
 
-You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-310-user-guide.pdf).
+You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-311-user-guide.pdf).
 
 To set environment variables, use the `-e` option for each variable on the command line:
 
