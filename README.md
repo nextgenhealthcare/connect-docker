@@ -23,7 +23,8 @@
 
 ##### Oracle OpenJDK 11 (Debian)
 
-* [3.10, 3.10.1, latest](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile)
+* [3.11, 3.11.0, latest](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile)
+* [3.10, 3.10.1](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile)
 * [3.10.0](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile)
 * [3.9, 3.9.1](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile)
 * [3.9.0](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile)
@@ -32,7 +33,8 @@
 
 ##### Oracle OpenJDK 11 with full JDK
 
-* [3.10-jdk, 3.10.1-jdk, latest-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-jdk)
+* [3.11-jdk, 3.11.0-jdk, latest-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-jdk)
+* [3.10-jdk, 3.10.1-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-jdk)
 * [3.10.0-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-jdk)
 * [3.9-jdk, 3.9.1-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-jdk)
 * [3.9.0-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-jdk)
@@ -41,7 +43,8 @@
 
 ##### Zulu OpenJDK 11 (Alpine Linux)
 
-* [3.10-zulu-alpine, 3.10.1-zulu-alpine, latest-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine)
+* [3.11-zulu-alpine, 3.11.0-zulu-alpine, latest-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine)
+* [3.10-zulu-alpine, 3.10.1-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-zulu-alpine)
 * [3.10.0-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-zulu-alpine)
 * [3.9-zulu-alpine, 3.9.1-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-zulu-alpine)
 * [3.9.0-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-zulu-alpine)
@@ -50,7 +53,8 @@
 
 ##### Zulu OpenJDK 11 with full JDK
 
-* [3.10-zulu-alpine-jdk, 3.10.1-zulu-alpine-jdk, latest-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine-jdk)
+* [3.11-zulu-alpine-jdk, 3.11.0-zulu-alpine-jdk, latest-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine-jdk)
+* [3.10-zulu-alpine-jdk, 3.10.1-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-zulu-alpine-jdk)
 * [3.10.0-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-zulu-alpine-jdk)
 * [3.9-zulu-alpine-jdk, 3.9.1-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-zulu-alpine-jdk)
 * [3.9.0-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-zulu-alpine-jdk)
@@ -59,7 +63,8 @@
 
 ##### AdoptOpenJDK 11 with OpenJ9 (Alpine Linux)
 
-* [3.10-adoptopenjdk-openj9-alpine, 3.10.1-adoptopenjdk-openj9-alpine, latest-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine)
+* [3.11-adoptopenjdk-openj9-alpine, 3.11.0-adoptopenjdk-openj9-alpine, latest-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine)
+* [3.10-adoptopenjdk-openj9-alpine, 3.10.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-adoptopenjdk-openj9-alpine)
 * [3.10.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-adoptopenjdk-openj9-alpine)
 * [3.9-adoptopenjdk-openj9-alpine, 3.9.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-adoptopenjdk-openj9-alpine)
 * [3.9.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-adoptopenjdk-openj9-alpine)
@@ -68,7 +73,8 @@
 
 ##### AdoptOpenJDK 11 with OpenJ9 and full JDK
 
-* [3.10-adoptopenjdk-openj9-alpine-jdk, 3.10.1-adoptopenjdk-openj9-alpine-jdk, latest-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
+* [3.11-adoptopenjdk-openj9-alpine-jdk, 3.11.0-adoptopenjdk-openj9-alpine-jdk, latest-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
+* [3.10-adoptopenjdk-openj9-alpine-jdk, 3.10.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
 * [3.10.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
 * [3.9-adoptopenjdk-openj9-alpine-jdk, 3.9.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
 * [3.9.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
@@ -82,7 +88,7 @@
 
 #### Where to get help:
 
-* [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-310-user-guide.pdf)
+* [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-311-user-guide.pdf)
 * [Connect Forum](https://www.mirthcorp.com/community/forums)
 * [Slack Channel](https://mirthconnect.slack.com/) (register [here](https://mirthconnect.herokuapp.com))
 * [Connect GitHub](https://github.com/nextgenhealthcare/connect)
@@ -185,7 +191,7 @@ There are other example stack files in the [examples directory](https://github.c
 <a name="environment-variables"></a>
 ## Environment Variables [↑](#top)
 
-You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-310-user-guide.pdf).
+You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-311-user-guide.pdf).
 
 To set environment variables, use the `-e` option for each variable on the command line:
 
