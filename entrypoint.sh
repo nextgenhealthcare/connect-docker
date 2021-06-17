@@ -50,6 +50,10 @@ if ! [ -z "${KEYSTORE_KEYPASS+x}" ]; then
 	sed -i "s/^keystore\.keypass\s*=\s*.*\$/keystore.keypass = ${KEYSTORE_KEYPASS//\//\\/}/" /opt/connect/conf/mirth.properties
 fi
 
+if ! [ -z "${KEYSTORE_TYPE+x}" ]; then
+	sed -i "s/^keystore\.keypass\s*=\s*.*\$/keystore.type = ${KEYSTORE_TYPE//\//\\/}/" /opt/connect/conf/mirth.properties
+fi
+
 # license key
 if ! [ -z "${LICENSE_KEY+x}" ]; then
 	LINE_COUNT=`grep "license.key" /opt/connect/conf/mirth.properties | wc -l`
@@ -167,6 +171,16 @@ fi
 # takes a whole mcserver.vmoptions file and merges line by line with /opt/connect/mcserver.vmoptions
 if [ -f /run/secrets/mcserver_vmoptions ]; then
     (cat /run/secrets/mcserver_vmoptions ; echo "") >> /opt/connect/mcserver.vmoptions
+fi
+
+# download keystore
+if ! [ -z "${KEYSTORE_DOWNLOAD+x}" ]; then
+	echo "Downloading keystore at ${KEYSTORE_DOWNLOAD}"
+	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
+		curl -ksSLf "${KEYSTORE_DOWNLOAD}" -o "/opt/connect/appdata/keystore.jks"
+	else
+		curl -sSLf "${KEYSTORE_DOWNLOAD}" -o "/opt/connect/appdata/keystore.jks"
+	fi
 fi
 
 # if delay is set as an environment variable then wait that long in seconds
