@@ -287,7 +287,7 @@ This tells the entrypoint script to wait for a certain amount of time (in second
 <a name="env-keystore-download"></a>
 #### `KEYSTORE_DOWNLOAD`
 
-A location where a Connect keystore file will be downloaded during container startup.
+A URL location of a Connect keystore file. This file will be downloaded into the container and Connect will use it as its keystore.
 
 <a name="env-allow-insecure"></a>
 #### `ALLOW_INSECURE`
