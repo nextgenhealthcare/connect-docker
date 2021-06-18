@@ -262,6 +262,11 @@ The password for the keystore file itself. If you don't want to use an environme
 
 The password for the keys within the keystore, including the server certificate and the secret encryption key. If you don't want to use an environment variable to store sensitive information like this, look at the [Using Docker Secrets](#using-docker-secrets) section below.
 
+<a name="env-keystore-type"></a>
+#### `KEYSTORE_TYPE`
+
+The type of keystore.
+
 <a name="env-session-store"></a>
 #### `SESSION_STORE`
 
@@ -278,6 +283,16 @@ A comma-separated list of JVM command-line options to place in the `.vmoptions` 
 #### `DELAY`
 
 This tells the entrypoint script to wait for a certain amount of time (in seconds). The entrypoint script will automatically use a command-line SQL client to check connectivity and wait until the database is up before starting Connect, but only when using PostgreSQL or MySQL. If you are using Oracle or SQL Server and the database is being started up at the same time as Connect, you may want to use this option to tell Connect to wait a bit to allow the database time to startup.
+
+<a name="env-keystore-download"></a>
+#### `KEYSTORE_DOWNLOAD`
+
+A URL location of a Connect keystore file. This file will be downloaded into the container and Connect will use it as its keystore.
+
+<a name="env-allow-insecure"></a>
+#### `ALLOW_INSECURE`
+
+Allow insecure SSL connections when downloading files during startup. This applies to keystore downloads, plugin downloads, and server library downloads.
 
 ------------
 

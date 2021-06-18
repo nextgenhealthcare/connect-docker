@@ -7,34 +7,49 @@ import tarfile
 import shutil
 import os
 import yaml
+
 class DockerUtil():
     @classmethod
-    def generate_compose_yml(cls, destfile, image):
+    def generate_compose_yml(cls, destfile, image, yaml_file='test.yml'):
         # generate yml file used test scenario3
-        with open(os.path.join('.','testdata','test.yml'),'r') as f:
+        with open(os.path.join('.', 'testdata', yaml_file), 'r') as f:
             data = yaml.safe_load(f)
+        
+        # modify the Connect image in the yml data
         data['services']['mc']['image'] = image
+
         # write to destination file, expect full path to file
         with open(destfile,'w') as f:
-            yaml.dump(data,f,default_flow_style=False)
+            yaml.dump(data, f, default_flow_style=False)
+
+    @classmethod
+    def found_log_message(cls, container, message):
+        # find a message in the container log
+        logs = container.logs()
+        if logs.find(message) != -1:
+            return True
+        return False
+
+    @classmethod
+    def wait_for_log_message(cls, containers, message, timeout):
+        # wait a max of <timeout> for log message to appear within <container>
+        for container in containers:
+            while not cls.found_log_message(container, message):
+                timeout -= 1
+                time.sleep(1)
+                if timeout == 0:
+                    raise Exception("Reached timeout, waiting for log message")
 
     @classmethod
     def wait_for_containers(cls, containers, timeout):
         # wait a max of <timeout> for MC to start within <container>
         for container in containers:
-            while not cls.connect_is_up(container):
+            # look for "Web server running" line in container log
+            while not cls.found_log_message(container, "Web server running"):
                 timeout -= 1
                 time.sleep(1)
                 if timeout == 0:
                     raise Exception("Reached timeout, waiting for Connect to come up")
-
-    @classmethod
-    def connect_is_up(cls, container):
-        # look for "Web server running" line in container log
-        logs = container.logs()
-        if logs.find("Web server running") != -1:
-            return True
-        return False
 
     @classmethod
     def check_container_log(cls, container, phrase):
