@@ -6,6 +6,9 @@ from utils import DockerUtil
 from test1 import DockerTests1
 from test2 import DockerTests2
 from test3 import DockerTests3
+from testKeystoreHTTP import DockerTestsKeystoreHTTP
+from testKeystoreHTTPS import DockerTestsKeystoreHTTPS
+from testKeystoreHTTPSInsecure import DockerTestsKeystoreHTTPSInsecure
 
 def main():
 
@@ -25,7 +28,7 @@ def main():
     elif not tag:
         tags = ["latest"]
 
-    test_classes = [DockerTests1, DockerTests2, DockerTests3]
+    test_classes = [DockerTests1, DockerTests2, DockerTests3, DockerTestsKeystoreHTTP, DockerTestsKeystoreHTTPS, DockerTestsKeystoreHTTPSInsecure]
     loader = unittest.TestLoader()
 
     for itag in tags:
