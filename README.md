@@ -292,7 +292,7 @@ A URL location of a Connect keystore file. This file will be downloaded into the
 <a name="env-allow-insecure"></a>
 #### `ALLOW_INSECURE`
 
-Allow insecure SSL connections when downloading files during startup. This applies to keystore downloads, plugin downloads, and server library downloads.
+Allow insecure SSL connections when downloading files during startup. This applies to keystore downloads, plugin downloads, and server library downloads. By default, insecure connections are disabled but you can enable this option by setting `ALLOW_INSECURE=true`.
 
 ------------
 
