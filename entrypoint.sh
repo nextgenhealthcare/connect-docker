@@ -20,10 +20,10 @@ if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
 	fi
 fi
 
-# unzip jar to server-launcher-lib  folder
+# Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
 if [ -e "userJars.zip" ]
 then
-    echo "unzipping JARS.jar"
+    echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
     unzip userJars.zip -d  /opt/connect/server-launcher-lib
 fi
 
