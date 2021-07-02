@@ -9,27 +9,6 @@ if [ $custom_extension_count != 0 ]; then
 	done
 fi
 
-
-# download jars from this url $CUSTOM_JARS_DOWNLOAD set by user
-if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
-	echo "Downloading Jars at ${CUSTOM_JARS_DOWNLOAD}"
-	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
-		curl -ksSLf "${CUSTOM_JARS_DOWNLOAD}" -o  userJars.zip
-	else
-		curl -sSLf "${CUSTOM_JARS_DOWNLOAD}" -o userJars.zip
-	fi
-fi
-
-# Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
-if [ -e "userJars.zip" ]
-then
-    echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
-    unzip userJars.zip -d  /opt/connect/server-launcher-lib
-fi
-
-# removing the downloaded zip file
-rm userJars.zip
-
 # set storepass and keypass to 'changeme' so they aren't overwritten later
 KEYSTORE_PASS=changeme
 sed -i "s/^keystore\.storepass\s*=\s*.*\$/keystore.storepass = ${KEYSTORE_PASS//\//\\/}/" /opt/connect/conf/mirth.properties
@@ -192,6 +171,25 @@ fi
 # takes a whole mcserver.vmoptions file and merges line by line with /opt/connect/mcserver.vmoptions
 if [ -f /run/secrets/mcserver_vmoptions ]; then
     (cat /run/secrets/mcserver_vmoptions ; echo "") >> /opt/connect/mcserver.vmoptions
+fi
+
+# download jars from this url "$CUSTOM_JARS_DOWNLOAD", set by user
+if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
+	echo "Downloading Jars at ${CUSTOM_JARS_DOWNLOAD}"
+	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
+		curl -ksSLf "${CUSTOM_JARS_DOWNLOAD}" -o  userJars.zip
+	else
+		curl -sSLf "${CUSTOM_JARS_DOWNLOAD}" -o userJars.zip
+	fi
+fi
+
+# Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
+if [ -e "userJars.zip" ]
+then
+    echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
+    unzip userJars.zip -d  /opt/connect/server-launcher-lib
+	# removing the downloaded zip file
+	rm userJars.zip
 fi
 
 # download keystore
