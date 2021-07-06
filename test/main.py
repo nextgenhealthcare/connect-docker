@@ -9,6 +9,9 @@ from test3 import DockerTests3
 from testKeystoreHTTP import DockerTestsKeystoreHTTP
 from testKeystoreHTTPS import DockerTestsKeystoreHTTPS
 from testKeystoreHTTPSInsecure import DockerTestsKeystoreHTTPSInsecure
+from testCustomJarsHTTP import DockerTestsCustomJarsHTTP
+from testCustomJarsHTTPS import DockerTestsCustomJarsHTTPS
+from testCustomJarsHTTPSInsecure import DockerTestsCustomJarsHTTPSInsecure
 
 def main():
 
@@ -28,7 +31,7 @@ def main():
     elif not tag:
         tags = ["latest"]
 
-    test_classes = [DockerTests1, DockerTests2, DockerTests3, DockerTestsKeystoreHTTP, DockerTestsKeystoreHTTPS, DockerTestsKeystoreHTTPSInsecure]
+    test_classes = [DockerTests1, DockerTests2, DockerTests3, DockerTestsKeystoreHTTP, DockerTestsKeystoreHTTPS, DockerTestsKeystoreHTTPSInsecure, DockerTestsCustomJarsHTTP, DockerTestsCustomJarsHTTPS, DockerTestsCustomJarsHTTPSInsecure]
     loader = unittest.TestLoader()
 
     for itag in tags:
