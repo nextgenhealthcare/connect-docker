@@ -173,6 +173,25 @@ if [ -f /run/secrets/mcserver_vmoptions ]; then
     (cat /run/secrets/mcserver_vmoptions ; echo "") >> /opt/connect/mcserver.vmoptions
 fi
 
+# download jars from this url "$CUSTOM_JARS_DOWNLOAD", set by user
+if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
+	echo "Downloading Jars at ${CUSTOM_JARS_DOWNLOAD}"
+	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
+		curl -ksSLf "${CUSTOM_JARS_DOWNLOAD}" -o  userJars.zip
+	else
+		curl -sSLf "${CUSTOM_JARS_DOWNLOAD}" -o userJars.zip
+	fi
+fi
+
+# Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
+if [ -e "userJars.zip" ]
+then
+    echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
+    unzip userJars.zip -d  /opt/connect/server-launcher-lib
+	# removing the downloaded zip file
+	rm userJars.zip
+fi
+
 # download keystore
 if ! [ -z "${KEYSTORE_DOWNLOAD+x}" ]; then
 	echo "Downloading keystore at ${KEYSTORE_DOWNLOAD}"
