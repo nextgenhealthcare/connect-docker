@@ -4,7 +4,7 @@ services:
     image: nextgenhealthcare/connect
     environment:
       - VMOPTIONS=-Xmx512m
-      - CUSTOM_JARS_DOWNLOAD=https://files/Test.zip
+      - CUSTOM_JARS_DOWNLOAD=https://files/CustomJars.zip
     ports:
       - 8080:8080/tcp
       - 8443:8443/tcp

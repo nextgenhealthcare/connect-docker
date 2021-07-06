@@ -17,7 +17,7 @@ class DockerTestsCustomJarsHTTPSInsecure(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        print(' \n >>>> ==== RRunning Test custom jars - Verify Custom Jars download HTTPS Allow Insecure' + ' ===== ') 
+        print(' \n >>>> ==== Running Test custom jars - Verify Custom Jars download HTTPS Allow Insecure' + ' ===== ') 
         print( ' >>>> ==== using IMAGE = ' + cls.docker_image + ' ===== ')
         DockerUtil.empty_test_folder("tmp")
 
