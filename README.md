@@ -162,6 +162,8 @@ services:
       - DATABASE_MAX_CONNECTIONS=20
       - DATABASE_USERNAME=mirthdb
       - DATABASE_PASSWORD=mirthdb
+      - DATABASE_MAX_RETRY=2
+      - DATABASE_RETRY_WAIT=10000
       - KEYSTORE_STOREPASS=docker_storepass
       - KEYSTORE_KEYPASS=docker_keypass
       - VMOPTIONS=-Xmx512m
@@ -206,6 +208,8 @@ DATABASE=postgres
 DATABASE_URL=jdbc:postgresql://serverip:5432/mirthdb
 DATABASE_USERNAME=postgres
 DATABASE_PASSWORD=postgres
+DATABASE_MAX_RETRY=2
+DATABASE_RETRY_WAIT=10000
 KEYSTORE_STOREPASS=changeme
 KEYSTORE_KEYPASS=changeme
 VMOPTIONS=-Xmx512m
@@ -251,6 +255,16 @@ The password to use when connecting to the database. If you don't want to use an
 #### `DATABASE_MAX_CONNECTIONS`
 
 The maximum number of connections to use for the internal messaging engine connection pool.
+
+<a name="env-database-max-retry"></a>
+#### `DATABASE_MAX_RETRY`
+
+On startup, if a database connection cannot be made for any reason, Connect will wait and attempt again this number of times. By default, will retry 2 times (so 3 total attempts).
+
+<a name="env-database-retry-wait"></a>
+#### `DATABASE_RETRY_WAIT`
+
+The amount of time (in milliseconds) to wait between database connection attempts. By default, will wait 10 seconds between attempts.
 
 <a name="env-keystore-storepass"></a>
 #### `KEYSTORE_STOREPASS`
