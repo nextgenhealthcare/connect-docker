@@ -259,7 +259,7 @@ The maximum number of connections to use for the internal messaging engine conne
 <a name="env-database-max-retry"></a>
 #### `DATABASE_MAX_RETRY`
 
-On startup, if a database connection cannot be made for any reason, Connect will wait and attempt again this number of time. By default, will retry 2 times (so 3 total attempts).
+On startup, if a database connection cannot be made for any reason, Connect will wait and attempt again this number of times. By default, will retry 2 times (so 3 total attempts).
 
 <a name="env-database-retry-wait"></a>
 #### `DATABASE_RETRY_WAIT`
