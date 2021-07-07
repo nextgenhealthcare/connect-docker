@@ -1,6 +1,5 @@
 FROM adoptopenjdk/openjdk11-openj9:alpine-jre
 
-RUN apk update && apk upgrade && apk --no-cache add bash postgresql-client mysql-client curl
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8

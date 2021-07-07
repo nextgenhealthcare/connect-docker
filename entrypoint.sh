@@ -40,6 +40,16 @@ if ! [ -z "${DATABASE_MAX_CONNECTIONS+x}" ]; then
 	sed -i "s/^database\.max-connections\s*=\s*.*\$/database.max-connections = ${DATABASE_MAX_CONNECTIONS//\//\\/}/" /opt/connect/conf/mirth.properties
 fi
 
+# database max retries
+if ! [ -z "${DATABASE_MAX_RETRY+x}" ]; then
+	sed -i "s/^database\.connection\.maxretry\s*=\s*.*\$/database.connection.maxretry = ${DATABASE_MAX_RETRY//\//\\/}/" /opt/connect/conf/mirth.properties
+fi
+
+# database retry wait time
+if ! [ -z "${DATABASE_RETRY_WAIT+x}" ]; then
+	sed -i "s/^database\.connection\.retrywaitinmilliseconds\s*=\s*.*\$/database.connection.retrywaitinmilliseconds = ${DATABASE_RETRY_WAIT//\//\\/}/" /opt/connect/conf/mirth.properties
+fi
+
 # keystore storepass
 if ! [ -z "${KEYSTORE_STOREPASS+x}" ]; then
 	sed -i "s/^keystore\.storepass\s*=\s*.*\$/keystore.storepass = ${KEYSTORE_STOREPASS//\//\\/}/" /opt/connect/conf/mirth.properties
@@ -207,53 +217,5 @@ if ! [ -z "${DELAY+x}" ]; then
 	sleep $DELAY
 fi
 
-# check if DB is up
-# use the db type to attempt to connect to the db before starting connect to prevent connect from trying to start before the db is up
-# get the database properties from mirth.properties
-db=$(grep "^database\s*=" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
-dbusername=$(grep "^database.username" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
-dbpassword=$(grep "^database.password" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
-dburl=$(grep "^database.url" /opt/connect/conf/mirth.properties | sed -e 's/[^=]*=\s*\(.*\)/\1/')
-
-if [ $db == "postgres" ] || [ $db == "mysql" ]; then
-	# parse host, port, and name
-	dbhost=$(echo $dburl | sed -e 's/.*\/\/\(.*\):.*/\1/')
-	dbport=$(echo $dburl | sed -e "s/.*${dbhost}:\(.*\)\/.*/\1/")
-	if [[ $dburl =~ "?" ]]; then
-		dbname=$(echo "${dburl}" | sed -e "s/.*${dbport}\/\(.*\)?.*/\1/")
-	else
-		dbname=$(echo "${dburl}" | sed -e "s/.*${dbport}\///")
-	fi
-fi
-
-count=0
-case "$db" in
-	"postgres" )
-		until echo $dbpassword | psql -h "$dbhost" -p "$dbport" -U "$dbusername" -d "$dbname" -c '\l' >/dev/null 2>&1; do
-			let count=count+1
-			if [ $count -gt 30 ]; then
-				echo "Postgres is unavailable. Aborting."
-				exit 1
-			fi
-			sleep 1
-		done
-		;;
-	"mysql" )
-        echo "trying to connect to mysql"
-		until mysql -h "$dbhost" "-p${dbpassword}" -P "$dbport" -u "$dbusername" -e 'SHOW DATABASES' >/dev/null 2>&1; do
-			let count=count+1
-			if [ $count -gt 50 ]; then
-				# show the error
-				mysql -h "$dbhost" "-p${dbpassword}" -P "$dbport" -u "$dbusername" -e 'SHOW DATABASES'
-				echo "MySQL is unavailable. Aborting."
-				exit 1
-			fi
-			sleep 1
-		done
-		;;
-	*)
-        sleep 1
-		;;
-esac
 
 exec "$@"
