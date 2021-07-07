@@ -1,5 +1,7 @@
 FROM azul/zulu-openjdk-alpine:11-jre
 
+RUN apk update && apk upgrade && apk --no-cache add bash curl
+
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8

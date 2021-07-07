@@ -1,5 +1,8 @@
 FROM openjdk:11-jre
 
+RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales \ 
+&& sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
+
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
