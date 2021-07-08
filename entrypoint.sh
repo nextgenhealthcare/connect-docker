@@ -202,6 +202,25 @@ then
 	rm userJars.zip
 fi
 
+# download extensions from this url "$EXTENSIONS_DOWNLOAD", set by user
+if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
+	echo "Downloading extensions at ${EXTENSIONS_DOWNLOAD}"
+	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
+		curl -ksSLf "${EXTENSIONS_DOWNLOAD}" -o  userExtensions.zip || echo "problem with extensions download"
+	else
+		curl -sSLf "${EXTENSIONS_DOWNLOAD}" -o userExtensions.zip || echo "problem with extensions download"
+	fi
+fi
+
+# Unzipping contents of userExtensions.zip into /opt/connect/extensions folder
+if [ -e "userExtensions.zip" ]
+then
+    echo "Unzipping contents of userExtensions.zip into /opt/connect/extensions"
+    unzip userExtensions.zip -d  /opt/connect/extensions
+	# removing the downloaded zip file
+	rm userExtensions.zip
+fi
+
 # download keystore
 if ! [ -z "${KEYSTORE_DOWNLOAD+x}" ]; then
 	echo "Downloading keystore at ${KEYSTORE_DOWNLOAD}"
