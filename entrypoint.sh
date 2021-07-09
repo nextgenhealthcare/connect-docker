@@ -194,13 +194,40 @@ if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
 fi
 
 # Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
-if [ -e "userJars.zip" ]
-then
+if [ -e "userJars.zip" ]; then
     echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
     unzip userJars.zip -d  /opt/connect/server-launcher-lib
 	# removing the downloaded zip file
 	rm userJars.zip
 fi
+
+# download extensions from this url "$EXTENSIONS_DOWNLOAD", set by user
+if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
+	echo "Downloading extensions at ${EXTENSIONS_DOWNLOAD}"
+	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
+		curl -ksSLf "${EXTENSIONS_DOWNLOAD}" -o  userExtensions.zip || echo "problem with extensions download"
+	else
+		curl -sSLf "${EXTENSIONS_DOWNLOAD}" -o userExtensions.zip || echo "problem with extensions download"
+	fi
+fi
+
+# Unzipping contents of userExtensions.zip
+if [ -e "userExtensions.zip" ]; then
+    echo "Unzipping contents of userExtensions.zip"
+    unzip userExtensions.zip 
+	# removing the downloaded zip file
+	rm userExtensions.zip
+
+	# Unzipping contents of individual extension zip files into /opt/connect/extensions folder
+	zipFileCount=`ls -1 *.zip 2>/dev/null | wc -l`
+	if [ $zipFileCount != 0 ]; then
+		echo "Unzipping contents of extension zips into /opt/connect/extensions"
+		unzip '*.zip' -d  /opt/connect/extensions
+		# removing the downloaded zip file
+		rm *.zip
+	fi
+fi
+
 
 # download keystore
 if ! [ -z "${KEYSTORE_DOWNLOAD+x}" ]; then
@@ -216,6 +243,5 @@ fi
 if ! [ -z "${DELAY+x}" ]; then
 	sleep $DELAY
 fi
-
 
 exec "$@"
