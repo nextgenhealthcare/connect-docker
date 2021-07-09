@@ -225,7 +225,7 @@ if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
 			echo "Unzipping contents of /tmp/userextensions/ zips into /opt/connect/extensions"
 			unzip /tmp/userextensions/'*.zip' -d  /opt/connect/extensions
 			# removing the downloaded zip file
-			rm /tmp/userextensions/*.zip
+			rm -r /tmp
 		fi
 	fi
 fi
