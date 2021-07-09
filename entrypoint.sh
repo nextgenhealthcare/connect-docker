@@ -194,8 +194,7 @@ if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
 fi
 
 # Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
-if [ -e "userJars.zip" ]
-then
+if [ -e "userJars.zip" ]; then
     echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
     unzip userJars.zip -d  /opt/connect/server-launcher-lib
 	# removing the downloaded zip file
@@ -213,12 +212,12 @@ if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
 fi
 
 # Unzipping contents of userExtensions.zip into /opt/connect/extensions folder
-if [ -e "userExtensions.zip" ]
-then
-    echo "Unzipping contents of userExtensions.zip into /opt/connect/extensions"
-    unzip userExtensions.zip -d  /opt/connect/extensions
+zipFileCount=`ls -1 *.zip 2>/dev/null | wc -l`
+if [ $zipFileCount != 0 ]; then
+    echo "Unzipping contents of *.zip into /opt/connect/extensions"
+    unzip '*.zip' -d  /opt/connect/extensions
 	# removing the downloaded zip file
-	rm userExtensions.zip
+	rm *.zip
 fi
 
 # download keystore
