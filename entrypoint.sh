@@ -211,14 +211,23 @@ if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
 	fi
 fi
 
-# Unzipping contents of userExtensions.zip into /opt/connect/extensions folder
-zipFileCount=`ls -1 *.zip 2>/dev/null | wc -l`
-if [ $zipFileCount != 0 ]; then
-    echo "Unzipping contents of *.zip into /opt/connect/extensions"
-    unzip '*.zip' -d  /opt/connect/extensions
+# Unzipping contents of userExtensions.zip
+if [ -e "userExtensions.zip" ]; then
+    echo "Unzipping contents of userExtensions.zip"
+    unzip userExtensions.zip 
 	# removing the downloaded zip file
-	rm *.zip
+	rm userExtensions.zip
+
+	# Unzipping contents of individual extension zip files into /opt/connect/extensions folder
+	zipFileCount=`ls -1 *.zip 2>/dev/null | wc -l`
+	if [ $zipFileCount != 0 ]; then
+		echo "Unzipping contents of extension zips into /opt/connect/extensions"
+		unzip '*.zip' -d  /opt/connect/extensions
+		# removing the downloaded zip file
+		rm *.zip
+	fi
 fi
+
 
 # download keystore
 if ! [ -z "${KEYSTORE_DOWNLOAD+x}" ]; then
@@ -234,6 +243,5 @@ fi
 if ! [ -z "${DELAY+x}" ]; then
 	sleep $DELAY
 fi
-
 
 exec "$@"
