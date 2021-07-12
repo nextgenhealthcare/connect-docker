@@ -212,9 +212,10 @@ if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
 		curl -sSLf "${EXTENSIONS_DOWNLOAD}" -o userExtensions.zip || echo "problem with extensions download"
 	fi
 
-		# Unzipping contents of userExtensions.zip
+	# Unzipping contents of userExtensions.zip
 	if [ -e "userExtensions.zip" ]; then
 		echo "Unzipping contents of userExtensions.zip"
+		mkdir /tmp/userextensions
 		unzip userExtensions.zip -d /tmp/userextensions
 		# removing the downloaded zip file
 		rm userExtensions.zip
@@ -223,7 +224,7 @@ if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
 		zipFileCount=`ls -1 /tmp/userextensions/*.zip 2>/dev/null | wc -l`
 		if [ $zipFileCount != 0 ]; then
 			echo "Unzipping contents of /tmp/userextensions/ zips into /opt/connect/extensions"
-			unzip /tmp/userextensions/'*.zip' -d  /opt/connect/extensions
+			for f in /tmp/userextensions/*.zip; do unzip "$f" -d /opt/connect/extensions; done
 			# removing the downloaded zip file
 			rm -rf /tmp/userextensions
 		fi
