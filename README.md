@@ -303,6 +303,16 @@ This tells the entrypoint script to wait for a certain amount of time (in second
 
 A URL location of a Connect keystore file. This file will be downloaded into the container and Connect will use it as its keystore.
 
+<a name ="env-extensions-download"></a>
+#### `EXTENSIONS_DOWNLOAD`
+
+A URL location of a zip file containing Connect extension zip files. The extensions will be installed on the Connect server.
+
+<a name ="env-custom-jars-download"></a>
+#### `CUSTOM_JARS_DOWNLOAD`
+
+A URL location of a zip file containing JAR files. The JAR files will be installed into the `server-launcher-lib` folder on the Connect server, so they will be added to the server's classpath.
+
 <a name="env-allow-insecure"></a>
 #### `ALLOW_INSECURE`
 
