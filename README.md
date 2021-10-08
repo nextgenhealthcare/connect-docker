@@ -94,7 +94,7 @@
 
 #### Where to get help:
 
-* [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-312-user-guide.pdf)
+* [Connect User Guide](http://downloads.mirthcorp.com/connect-user-guide/latest/mirth-connect-user-guide.pdf)
 * [Connect Forum](https://www.mirthcorp.com/community/forums)
 * [Slack Channel](https://mirthconnect.slack.com/) (register [here](https://mirthconnect.herokuapp.com))
 * [Connect GitHub](https://github.com/nextgenhealthcare/connect)
@@ -199,7 +199,7 @@ There are other example stack files in the [examples directory](https://github.c
 <a name="environment-variables"></a>
 ## Environment Variables [↑](#top)
 
-You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](https://www.nextgen.com/-/media/Files/nextgen-connect/nextgen-connect-312-user-guide.pdf).
+You can use environment variables to configure the [mirth.properties](https://github.com/nextgenhealthcare/connect/blob/development/server/conf/mirth.properties) file or to add custom JVM options. More information on the available mirth.properties options can be found in the [Connect User Guide](http://downloads.mirthcorp.com/connect-user-guide/latest/mirth-connect-user-guide.pdf).
 
 To set environment variables, use the `-e` option for each variable on the command line:
 
