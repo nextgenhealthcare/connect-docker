@@ -13,7 +13,7 @@ class DockerTestsKeystoreHTTPSInsecure(unittest.TestCase):
     container = ""
     test_yml = os.path.join('.','tmp','keystore-https-insecure.yml')
     composeCmd = 'docker-compose -f '+ test_yml +' -p mctest_keystore_https_insecure'
-    max_wait_time = 20
+    max_wait_time = 120
 
     @classmethod
     def setUpClass(cls):

@@ -13,7 +13,7 @@ class DockerTestsCustomJarsHTTP(unittest.TestCase):
     container = ""
     test_yml = os.path.join('.','tmp','custom-jars-http.yml')
     composeCmd = 'docker-compose -f '+ test_yml +' -p mctest_custom_jars_http'
-    max_wait_time = 20
+    max_wait_time = 120
 
     @classmethod
     def setUpClass(cls):

@@ -13,7 +13,7 @@ class DockerTestsKeystoreHTTP(unittest.TestCase):
     container = ""
     test_yml = os.path.join('.','tmp','keystore-http.yml')
     composeCmd = 'docker-compose -f '+ test_yml +' -p mctest_keystore_http'
-    max_wait_time = 20
+    max_wait_time = 120
 
     @classmethod
     def setUpClass(cls):

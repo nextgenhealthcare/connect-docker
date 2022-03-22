@@ -13,7 +13,7 @@ class DockerTestsExtensionsHTTPS(unittest.TestCase):
     container = ""
     test_yml = os.path.join('.','tmp','extensions-https.yml')
     composeCmd = 'docker-compose -f '+ test_yml +' -p mctest_extensions_https'
-    max_wait_time = 20
+    max_wait_time = 120
 
     @classmethod
     def setUpClass(cls):
