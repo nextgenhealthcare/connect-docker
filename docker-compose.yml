@@ -1,0 +1,89 @@
+version: "3.4"
+
+# extensions
+x-base: &base
+  build:
+    context: .
+    dockerfile: Dockerfile
+  image: "${repo}:latest"
+x-jdk: &jdk
+  build:
+    context: .
+    dockerfile: Dockerfile-jdk
+  image: "${repo}:latest-jdk"
+x-zulu-alpine: &zulu-alpine
+  build:
+    context: .
+    dockerfile: Dockerfile-zulu-alpine
+  image: "${repo}:latest-zulu-alpine"
+x-zulu-alpine-jdk: &zulu-alpine-jdk
+  build:
+    context: .
+    dockerfile: Dockerfile-zulu-alpine-jdk
+  image: "${repo}:latest-zulu-alpine-jdk"
+x-adoptopenjdk-openj9-alpine: &adoptopenjdk-openj9-alpine
+  build:
+    context: .
+    dockerfile: Dockerfile-adoptopenjdk-openj9-alpine
+  image: "${repo}:latest-adoptopenjdk-openj9-alpine"
+x-adoptopenjdk-openj9-alpine-jdk: &adoptopenjdk-openj9-alpine-jdk
+  build:
+    context: .
+    dockerfile: Dockerfile-adoptopenjdk-openj9-alpine-jdk
+  image: "${repo}:latest-adoptopenjdk-openj9-alpine-jdk"
+
+# images
+services:
+  adoptopenjdk-openj9-alpine-jdk-minor:
+    << : *adoptopenjdk-openj9-alpine-jdk
+    image: "${repo}:${minor}-adoptopenjdk-openj9-alpine-jdk"
+  adoptopenjdk-openj9-alpine-jdk-major:
+    << : *adoptopenjdk-openj9-alpine-jdk
+    image: "${repo}:${major}-adoptopenjdk-openj9-alpine-jdk"
+  adoptopenjdk-openj9-alpine-jdk-latest:
+    *adoptopenjdk-openj9-alpine-jdk
+
+  adoptopenjdk-openj9-alpine-minor:
+    << : *adoptopenjdk-openj9-alpine
+    image: "${repo}:${minor}-adoptopenjdk-openj9-alpine"
+  adoptopenjdk-openj9-alpine-major:
+    << : *adoptopenjdk-openj9-alpine
+    image: "${repo}:${major}-adoptopenjdk-openj9-alpine"
+  adoptopenjdk-openj9-alpine-latest:
+    *adoptopenjdk-openj9-alpine
+
+  zulu-alpine-jdk-minor:
+    << : *zulu-alpine-jdk
+    image: "${repo}:${minor}-zulu-alpine-jdk"
+  zulu-alpine-jdk-major:
+    << : *zulu-alpine-jdk
+    image: "${repo}:${major}-zulu-alpine-jdk"
+  zulu-alpine-jdk-latest:
+    *zulu-alpine-jdk
+
+  zulu-alpine-minor:
+    << : *zulu-alpine
+    image: "${repo}:${minor}-zulu-alpine"
+  zulu-alpine-major:
+    << : *zulu-alpine
+    image: "${repo}:${major}-zulu-alpine"
+  zulu-alpine-latest:
+    *zulu-alpine
+
+  jdk-minor:
+    << : *jdk
+    image: "${repo}:${minor}-jdk"
+  jdk-major:
+    << : *jdk
+    image: "${repo}:${major}-jdk"
+  jdk-latest:
+    *jdk
+
+  base-minor:
+    << : *base
+    image: "${repo}:${minor}"
+  base-major:
+    << : *base
+    image: "${repo}:${major}"
+  base-latest:
+    *base
