@@ -5,31 +5,43 @@ x-base: &base
   build:
     context: .
     dockerfile: Dockerfile
+    args:
+      ARTIFACT: "${artifact_url}"
   image: "${repo}:latest"
 x-jdk: &jdk
   build:
     context: .
     dockerfile: Dockerfile-jdk
+    args:
+      ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-jdk"
 x-zulu-alpine: &zulu-alpine
   build:
     context: .
     dockerfile: Dockerfile-zulu-alpine
+    args:
+      ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-zulu-alpine"
 x-zulu-alpine-jdk: &zulu-alpine-jdk
   build:
     context: .
     dockerfile: Dockerfile-zulu-alpine-jdk
+    args:
+      ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-zulu-alpine-jdk"
 x-adoptopenjdk-openj9-alpine: &adoptopenjdk-openj9-alpine
   build:
     context: .
     dockerfile: Dockerfile-adoptopenjdk-openj9-alpine
+    args:
+      ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-adoptopenjdk-openj9-alpine"
 x-adoptopenjdk-openj9-alpine-jdk: &adoptopenjdk-openj9-alpine-jdk
   build:
     context: .
     dockerfile: Dockerfile-adoptopenjdk-openj9-alpine-jdk
+    args:
+      ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-adoptopenjdk-openj9-alpine-jdk"
 
 # images

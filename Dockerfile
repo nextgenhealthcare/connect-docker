@@ -3,11 +3,13 @@ FROM openjdk:11-jre
 RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales \ 
 && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
 
+ARG ARTIFACT
+
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN curl -SL 'https://s3.amazonaws.com/downloads.mirthcorp.com/connect/4.0.1.b293/mirthconnect-4.0.1.b293-unix.tar.gz' \
+RUN curl -SL $ARTIFACT \
     | tar -xzC /opt \
     && mv "/opt/Mirth Connect" /opt/connect
 
