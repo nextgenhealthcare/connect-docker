@@ -61,7 +61,7 @@ if ! [ -z "${KEYSTORE_KEYPASS+x}" ]; then
 fi
 
 if ! [ -z "${KEYSTORE_TYPE+x}" ]; then
-	sed -i "s/^keystore\.keypass\s*=\s*.*\$/keystore.type = ${KEYSTORE_TYPE//\//\\/}/" /opt/connect/conf/mirth.properties
+	sed -i "s/^keystore\.type\s*=\s*.*\$/keystore.type = ${KEYSTORE_TYPE//\//\\/}/" /opt/connect/conf/mirth.properties
 fi
 
 # license key
