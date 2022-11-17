@@ -33,7 +33,7 @@ class DockerTestsExtensionsHTTPSInsecure(unittest.TestCase):
         # Run docker compose
         os.system(cls.composeCmd + " up -d")
         client = docker.from_env()
-        cls.container = client.containers.get("mctest_extensions_https_insecure_mc_1")
+        cls.container = client.containers.get("mctest_extensions_https_insecure-mc-1")
 
     def test_extensions_https(self):
         # HTTPS and allowing insecure

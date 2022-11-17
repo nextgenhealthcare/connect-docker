@@ -39,7 +39,7 @@ class DockerTests3(unittest.TestCase):
         # Run docker compose        
         os.system(cls.composeCmd + " up -d")
         client = docker.from_env()
-        cls.container = client.containers.get("mctest3_mc_1")
+        cls.container = client.containers.get("mctest3-mc-1")
         # wait for MC to come up
         try:
             DockerUtil.wait_for_containers([cls.container], cls.max_wait_time)
