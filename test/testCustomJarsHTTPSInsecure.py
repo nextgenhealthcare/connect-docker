@@ -33,7 +33,7 @@ class DockerTestsCustomJarsHTTPSInsecure(unittest.TestCase):
         # Run docker compose
         os.system(cls.composeCmd + " up -d")
         client = docker.from_env()
-        cls.container = client.containers.get("mctest_custom_jars_https_insecure_mc_1")
+        cls.container = client.containers.get("mctest_custom_jars_https_insecure-mc-1")
 
     def test_CustomJars_http(self):
         # HTTPS and allowing insecure

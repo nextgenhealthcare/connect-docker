@@ -33,7 +33,7 @@ class DockerTestsExtensionsHTTP(unittest.TestCase):
         # Run docker compose
         os.system(cls.composeCmd + " up -d")
         client = docker.from_env()
-        cls.container = client.containers.get("mctest_extensions_http_mc_1")
+        cls.container = client.containers.get("mctest_extensions_http-mc-1")
 
     def test_extensions_http(self):
         # HTTP download
