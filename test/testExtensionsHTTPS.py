@@ -42,7 +42,7 @@ class DockerTestsExtensionsHTTPS(unittest.TestCase):
         # expect to find SSL cert problem
         try:
             DockerUtil.wait_for_log_message([self.container], "Downloading extensions at", self.max_wait_time)
-            DockerUtil.wait_for_log_message([self.container], "SSL certificate problem: self signed certificate", self.max_wait_time)
+            DockerUtil.wait_for_one_of_log_messages([self.container], ["SSL certificate problem: self signed certificate", "SSL certificate problem: self-signed certificate"], self.max_wait_time)
         except Exception as e:
             self.fail(e)
         
