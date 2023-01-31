@@ -25,16 +25,27 @@ class DockerUtil():
     @classmethod
     def found_log_message(cls, container, message):
         # find a message in the container log
+        return cls.found_one_of_log_messages(container, [message])
+
+    @classmethod
+    def found_one_of_log_messages(cls, container, messages):
+        # find one of the messages in the container log
         logs = container.logs()
-        if logs.find(message) != -1:
-            return True
+        for message in messages:
+            if logs.find(message) != -1:
+                return True
         return False
 
     @classmethod
     def wait_for_log_message(cls, containers, message, timeout):
         # wait a max of <timeout> for log message to appear within <container>
+        return cls.wait_for_one_of_log_messages(containers, [message], timeout)
+    
+    @classmethod
+    def wait_for_one_of_log_messages(cls, containers, messages, timeout):
+        # wait a max of <timeout> for one of the log messages to appear within <container>
         for container in containers:
-            while not cls.found_log_message(container, message):
+            while not cls.found_one_of_log_messages(container, messages):
                 timeout -= 1
                 time.sleep(1)
                 if timeout == 0:
@@ -120,7 +131,7 @@ class DockerUtil():
 
     @classmethod
     def dump_file(cls, container, docker_path, local_path):
-        # retrieve file from cintainer, write to file on local
+        # retrieve file from container, write to file on local
         mp = io.BytesIO()
         bits, stat = container.get_archive(docker_path)
         for chunk in bits:
@@ -133,7 +144,7 @@ class DockerUtil():
 
     @classmethod
     def list_container_dir(cls, container, docker_path):
-        # retrieve dir from cintainer, return dir listing 
+        # retrieve dir from container, return dir listing 
         mp = io.BytesIO()
         bits, stat = container.get_archive(docker_path)
         for chunk in bits:

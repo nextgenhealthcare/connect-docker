@@ -1,6 +1,7 @@
-FROM openjdk:11
+FROM eclipse-temurin:17.0.6_10-jdk
 
 RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales \ 
+unzip \
 && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
 
 ARG ARTIFACT

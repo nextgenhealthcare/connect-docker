@@ -40,7 +40,7 @@ class DockerTestsKeystoreHTTPSInsecure(unittest.TestCase):
 
         # expect not to find SSL cert problem
         with self.assertRaises(Exception) as e:
-            DockerUtil.wait_for_log_message([self.container], "SSL certificate problem: self signed certificate", self.max_wait_time)
+            DockerUtil.wait_for_one_of_log_messages([self.container], ["SSL certificate problem: self signed certificate", "SSL certificate problem: self-signed certificate"], self.max_wait_time)
 
         # expect to find downloading keystore message
         try:
