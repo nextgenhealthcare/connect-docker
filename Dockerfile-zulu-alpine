@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:11-jre
+FROM azul/zulu-openjdk-alpine:17-jre
 
 RUN apk update && apk upgrade && apk --no-cache add bash curl
 
