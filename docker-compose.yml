@@ -29,41 +29,9 @@ x-zulu-alpine-jdk: &zulu-alpine-jdk
     args:
       ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-zulu-alpine-jdk"
-x-adoptopenjdk-openj9-alpine: &adoptopenjdk-openj9-alpine
-  build:
-    context: .
-    dockerfile: Dockerfile-adoptopenjdk-openj9-alpine
-    args:
-      ARTIFACT: "${artifact_url}"
-  image: "${repo}:latest-adoptopenjdk-openj9-alpine"
-x-adoptopenjdk-openj9-alpine-jdk: &adoptopenjdk-openj9-alpine-jdk
-  build:
-    context: .
-    dockerfile: Dockerfile-adoptopenjdk-openj9-alpine-jdk
-    args:
-      ARTIFACT: "${artifact_url}"
-  image: "${repo}:latest-adoptopenjdk-openj9-alpine-jdk"
 
 # images
 services:
-  adoptopenjdk-openj9-alpine-jdk-minor:
-    << : *adoptopenjdk-openj9-alpine-jdk
-    image: "${repo}:${minor}-adoptopenjdk-openj9-alpine-jdk"
-  adoptopenjdk-openj9-alpine-jdk-major:
-    << : *adoptopenjdk-openj9-alpine-jdk
-    image: "${repo}:${major}-adoptopenjdk-openj9-alpine-jdk"
-  adoptopenjdk-openj9-alpine-jdk-latest:
-    *adoptopenjdk-openj9-alpine-jdk
-
-  adoptopenjdk-openj9-alpine-minor:
-    << : *adoptopenjdk-openj9-alpine
-    image: "${repo}:${minor}-adoptopenjdk-openj9-alpine"
-  adoptopenjdk-openj9-alpine-major:
-    << : *adoptopenjdk-openj9-alpine
-    image: "${repo}:${major}-adoptopenjdk-openj9-alpine"
-  adoptopenjdk-openj9-alpine-latest:
-    *adoptopenjdk-openj9-alpine
-
   zulu-alpine-jdk-minor:
     << : *zulu-alpine-jdk
     image: "${repo}:${minor}-zulu-alpine-jdk"

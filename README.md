@@ -85,38 +85,6 @@
 * [3.8-zulu-alpine-jdk, 3.8.1-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.8.1/Dockerfile-zulu-alpine-jdk)
 * [3.8.0-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.8.0/Dockerfile-zulu-alpine-jdk)
 
-##### AdoptOpenJDK 11 with OpenJ9 (Alpine Linux)
-
-* [4.2-adoptopenjdk-openj9-alpine, 4.2.0-adoptopenjdk-openj9-alpine, latest-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine)
-* [4.1-adoptopenjdk-openj9-alpine, 4.1.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.1.1/Dockerfile-adoptopenjdk-openj9-alpine)
-* [4.1.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.1.0/Dockerfile-adoptopenjdk-openj9-alpine)
-* [4.0-adoptopenjdk-openj9-alpine, 4.0.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.0.1/Dockerfile-adoptopenjdk-openj9-alpine)
-* [4.0.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.0.0/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.12-adoptopenjdk-openj9-alpine, 3.12.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.12.0/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.11-adoptopenjdk-openj9-alpine, 3.11.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.11.0/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.10-adoptopenjdk-openj9-alpine, 3.10.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.10.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.9-adoptopenjdk-openj9-alpine, 3.9.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.9.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.8-adoptopenjdk-openj9-alpine, 3.8.1-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.8.1/Dockerfile-adoptopenjdk-openj9-alpine)
-* [3.8.0-adoptopenjdk-openj9-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/3.8.0/Dockerfile-adoptopenjdk-openj9-alpine)
-
-##### AdoptOpenJDK 11 with OpenJ9 and full JDK
-
-* [4.2-adoptopenjdk-openj9-alpine-jdk, 4.2.0-adoptopenjdk-openj9-alpine-jdk, latest-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [4.1-adoptopenjdk-openj9-alpine-jdk, 4.1.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.1.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [4.1.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.1.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [4.0-adoptopenjdk-openj9-alpine-jdk, 4.0.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.0.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [4.0.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.0.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.12-adoptopenjdk-openj9-alpine-jdk, 3.12.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.12.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.11-adoptopenjdk-openj9-alpine-jdk, 3.11.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.11.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.10-adoptopenjdk-openj9-alpine-jdk, 3.10.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.10.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.10.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.9-adoptopenjdk-openj9-alpine-jdk, 3.9.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.9.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.9.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.8-adoptopenjdk-openj9-alpine-jdk, 3.8.1-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.8.1/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-* [3.8.0-adoptopenjdk-openj9-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/3.8.0/Dockerfile-adoptopenjdk-openj9-alpine-jdk)
-
 ------------
 
 <a name="quick-reference"></a>
