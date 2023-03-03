@@ -364,6 +364,11 @@ A URL location of a zip file containing JAR files. The JAR files will be install
 
 Allow insecure SSL connections when downloading files during startup. This applies to keystore downloads, plugin downloads, and server library downloads. By default, insecure connections are disabled but you can enable this option by setting `ALLOW_INSECURE=true`.
 
+<a name="env-server-id"></a>
+#### `SERVER_ID`
+
+Set the `server.id` to a specific value. Use this to preserve or set the server ID across restarts and deployments. Using the env-var is preferred over storing `appdata` persistently
+
 ------------
 
 <a name="other-mirth-properties-options"></a>
