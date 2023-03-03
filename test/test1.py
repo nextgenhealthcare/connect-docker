@@ -26,7 +26,8 @@ class DockerTests1(unittest.TestCase):
         cls.container = client.containers.run(cls.docker_image, 
             environment=[
                 "SESSION_STORE=true",
-                "VMOPTIONS=-Xmx768m"
+                "VMOPTIONS=-Xmx768m",
+                "SERVER_ID=e259fb04-a9a6-438d-a6d1-4a54a0792cf0"
             ],
             detach=True, 
             name="mctest1")
@@ -41,6 +42,8 @@ class DockerTests1(unittest.TestCase):
         cls.mirth_properties_map = DockerUtil.get_prop_file_as_map(cls.container, "/opt/connect/conf/mirth.properties")
         # retrieve container server.vmoptions file as string array
         cls.vmoptions_array = DockerUtil.get_file_as_string_array(cls.container, "/opt/connect/mcserver.vmoptions")
+        #retrieve container server.id file as a map
+        cls.server_id_map = DockerUtil.get_prop_file_as_map(cls.container, "/opt/connect/appdata/server.id")
 
     def test_env_mirth_properties(self):
         # Verify mirth.properties entry from environment variable
@@ -52,6 +55,11 @@ class DockerTests1(unittest.TestCase):
         vmoptions = self.__class__.vmoptions_array
         last_item = vmoptions[-1]
         self.assertEqual("-Xmx768m", last_item)
+    
+    def test_env_server_id(self):
+        #Verify server.id entry from environment variable
+        props = self.__class__.server_id_map
+        self.assertEqual("e259fb04-a9a6-438d-a6d1-4a54a0792cf0", props.get("server.id"))
 
     @classmethod
     def tearDownClass(cls):
