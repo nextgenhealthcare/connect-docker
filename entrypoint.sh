@@ -84,6 +84,11 @@ if ! [ -z "${SESSION_STORE+x}" ]; then
 	fi
 fi
 
+#server ID
+if ! [ -z "${SERVER_ID+x}" ]; then
+  echo -e "server.id = ${SERVER_ID//\//\\/}" > /opt/connect/appdata/server.id
+fi
+
 # merge extra environment variables starting with _MP_ into mirth.properties
 while read -r keyvalue; do
 	KEY="${keyvalue%%=*}"
