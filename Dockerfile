@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17.0.6_10-jre
+FROM eclipse-temurin:17-jre
 
 RUN apt-get clean && apt-get update && apt-get install -y --no-install-recommends locales \
 unzip \ 
