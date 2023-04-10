@@ -8,6 +8,15 @@ x-base: &base
     args:
       ARTIFACT: "${artifact_url}"
   image: "${repo}:latest"
+  platform: linux/amd64
+x-base-arm64: &base-arm64
+  build:
+    context: .
+    dockerfile: Dockerfile-arm64
+    args:
+      ARTIFACT: "${artifact_url}"
+  image: "${repo}:latest-arm64"
+  platform: linux/arm64  
 x-jdk: &jdk
   build:
     context: .
@@ -15,6 +24,15 @@ x-jdk: &jdk
     args:
       ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-jdk"
+  platform: linux/amd64
+x-jdk-arm64: &jdk-arm64
+  build:
+    context: .
+    dockerfile: Dockerfile-jdk-arm64
+    args:
+      ARTIFACT: "${artifact_url}"
+  image: "${repo}:latest-jdk-arm64"
+  platform: linux/arm64  
 x-zulu-alpine: &zulu-alpine
   build:
     context: .
@@ -22,6 +40,15 @@ x-zulu-alpine: &zulu-alpine
     args:
       ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-zulu-alpine"
+  platform: linux/amd64
+x-zulu-alpine-arm64: &zulu-alpine-arm64
+  build:
+    context: .
+    dockerfile: Dockerfile-zulu-alpine
+    args:
+      ARTIFACT: "${artifact_url}"
+  image: "${repo}:latest-zulu-alpine-arm64"
+  platform: linux/arm64
 x-zulu-alpine-jdk: &zulu-alpine-jdk
   build:
     context: .
@@ -29,9 +56,27 @@ x-zulu-alpine-jdk: &zulu-alpine-jdk
     args:
       ARTIFACT: "${artifact_url}"
   image: "${repo}:latest-zulu-alpine-jdk"
+  platform: linux/amd64
+x-zulu-alpine-jdk-arm64: &zulu-alpine-jdk-arm64
+  build:
+    context: .
+    dockerfile: Dockerfile-zulu-alpine-jdk
+    args:
+      ARTIFACT: "${artifact_url}"
+  image: "${repo}:latest-zulu-alpine-jdk-arm64"
+  platform: linux/arm64  
 
 # images
 services:
+  zulu-alpine-jdk-minor-arm64:
+    << : *zulu-alpine-jdk-arm64
+    image: "${repo}:${minor}-zulu-alpine-jdk-arm64"
+  zulu-alpine-jdk-major-arm64:
+    << : *zulu-alpine-jdk-arm64
+    image: "${repo}:${major}-zulu-alpine-jdk-arm64"
+  zulu-alpine-jdk-latest-arm64:
+    *zulu-alpine-jdk-arm64
+  
   zulu-alpine-jdk-minor:
     << : *zulu-alpine-jdk
     image: "${repo}:${minor}-zulu-alpine-jdk"
@@ -40,6 +85,15 @@ services:
     image: "${repo}:${major}-zulu-alpine-jdk"
   zulu-alpine-jdk-latest:
     *zulu-alpine-jdk
+
+  zulu-alpine-minor-arm64:
+    << : *zulu-alpine-arm64
+    image: "${repo}:${minor}-zulu-alpine-arm64"
+  zulu-alpine-major-arm64:
+    << : *zulu-alpine-arm64
+    image: "${repo}:${major}-zulu-alpine-arm64"
+  zulu-alpine-latest-arm64:
+    *zulu-alpine-arm64    
 
   zulu-alpine-minor:
     << : *zulu-alpine
@@ -50,6 +104,15 @@ services:
   zulu-alpine-latest:
     *zulu-alpine
 
+  jdk-minor-arm64:
+    << : *jdk-arm64
+    image: "${repo}:${minor}-jdk-arm64"
+  jdk-major-arm64:
+    << : *jdk-arm64
+    image: "${repo}:${major}-jdk-arm64"
+  jdk-latest-arm64:
+    *jdk-arm64
+
   jdk-minor:
     << : *jdk
     image: "${repo}:${minor}-jdk"
@@ -58,6 +121,15 @@ services:
     image: "${repo}:${major}-jdk"
   jdk-latest:
     *jdk
+
+  base-minor-arm64:
+    << : *base-arm64
+    image: "${repo}:${minor}-arm64"
+  base-major-arm64:
+    << : *base-arm64
+    image: "${repo}:${major}-arm64"
+  base-latest-arm64:
+    *base-arm64   
 
   base-minor:
     << : *base

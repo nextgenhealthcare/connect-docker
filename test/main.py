@@ -2,6 +2,7 @@
 import docker
 import unittest
 import argparse
+import platform
 from utils import DockerUtil
 from test1 import DockerTests1
 from test2 import DockerTests2
@@ -28,7 +29,11 @@ def main():
     if (not image) and (not tag):
         # without any argument, will run for all latest JRE images
         image = "nextgenhealthcare/connect"
-        tags = ["latest","latest-jdk","latest-zulu-alpine","latest-zulu-alpine-jdk"]
+        
+        if platform.processor() == "arm":
+            tags = ["latest-arm64", "latest-jdk-arm64", "latest-zulu-alpine-arm64", "latest-zulu-alpine-jdk-arm64"]
+        else:
+            tags = ["latest", "latest-jdk", "latest-zulu-alpine", "latest-zulu-alpine-jdk"]
     elif not image: 
         image = "nextgenhealthcare/connect"
     elif not tag:
