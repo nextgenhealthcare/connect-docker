@@ -2,6 +2,7 @@
 # Table of Contents
 
 * [Supported tags and respective Dockerfile links](#supported-tags)
+* [Supported Architectures](#supported-architectures)
 * [Quick Reference](#quick-reference)
 * [What is NextGen Connect (formerly Mirth Connect)](#what-is-connect)
 * [How to use this image](#how-to-use)
@@ -73,6 +74,16 @@
 
 ------------
 
+<a name="supported-architectures"></a>
+# Supported Architectures [↑](#top)
+
+Docker images for Mirth Connect 4.4.0 and later versions support both `linux/amd64` and `linux/arm64` architectures. Earlier versions only support `linux/amd64`. As an example, to pull the latest `linux/arm64` image, use the command
+```
+docker pull --platform linux/arm64 nextgenhealthcare/connect:latest
+```
+
+------------
+
 <a name="quick-reference"></a>
 # Quick Reference [↑](#top)
 
@@ -126,6 +137,12 @@ To run a specific version of Connect, specify a tag at the end:
 docker run --name myconnect -d -p 8443:8443 nextgenhealthcare/connect:3.9
 ```
 
+To run using a specific architecture, specify it using the `--platform` argument:
+
+```bash
+docker run --name myconnect -d -p 8443:8443 --platform linux/arm64 nextgenhealthcare/connect:4.4.0
+```
+
 Look at the [Environment Variables](#environment-variables) section for more available configuration options.
 
 ------------
@@ -146,6 +163,7 @@ version: "3.1"
 services:
   mc:
     image: nextgenhealthcare/connect
+    platform: linux/amd64
     environment:
       - DATABASE=postgres
       - DATABASE_URL=jdbc:postgresql://db:5432/mirthdb
