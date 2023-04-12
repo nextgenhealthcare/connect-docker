@@ -29,11 +29,7 @@ def main():
     if (not image) and (not tag):
         # without any argument, will run for all latest JRE images
         image = "nextgenhealthcare/connect"
-        
-        if platform.processor() == "arm":
-            tags = ["latest-arm64", "latest-jdk-arm64", "latest-zulu-alpine-arm64", "latest-zulu-alpine-jdk-arm64"]
-        else:
-            tags = ["latest", "latest-jdk", "latest-zulu-alpine", "latest-zulu-alpine-jdk"]
+        tags = ["latest", "latest-jdk", "latest-zulu-alpine", "latest-zulu-alpine-jdk"]
     elif not image: 
         image = "nextgenhealthcare/connect"
     elif not tag:
