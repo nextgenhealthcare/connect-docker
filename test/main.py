@@ -2,7 +2,6 @@
 import docker
 import unittest
 import argparse
-import platform
 from utils import DockerUtil
 from test1 import DockerTests1
 from test2 import DockerTests2
