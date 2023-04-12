@@ -7,6 +7,10 @@ x-base: &base
     dockerfile: Dockerfile
     args:
       ARTIFACT: "${artifact_url}"
+    x-bake:
+      platforms:
+        - linux/amd64
+        - linux/arm64
   image: "${repo}:latest"
 x-jdk: &jdk
   build:
@@ -14,6 +18,10 @@ x-jdk: &jdk
     dockerfile: Dockerfile-jdk
     args:
       ARTIFACT: "${artifact_url}"
+    x-bake:
+      platforms:
+        - linux/amd64      
+        - linux/arm64
   image: "${repo}:latest-jdk"
 x-zulu-alpine: &zulu-alpine
   build:
@@ -21,6 +29,10 @@ x-zulu-alpine: &zulu-alpine
     dockerfile: Dockerfile-zulu-alpine
     args:
       ARTIFACT: "${artifact_url}"
+    x-bake:
+      platforms:
+        - linux/amd64    
+        - linux/arm64
   image: "${repo}:latest-zulu-alpine"
 x-zulu-alpine-jdk: &zulu-alpine-jdk
   build:
@@ -28,6 +40,10 @@ x-zulu-alpine-jdk: &zulu-alpine-jdk
     dockerfile: Dockerfile-zulu-alpine-jdk
     args:
       ARTIFACT: "${artifact_url}"
+    x-bake:
+      platforms:
+        - linux/amd64  
+        - linux/arm64
   image: "${repo}:latest-zulu-alpine-jdk"
 
 # images
