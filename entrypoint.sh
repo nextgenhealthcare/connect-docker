@@ -156,7 +156,7 @@ fi
 # takes a whole mirth.properties file and merges line by line with /opt/connect/conf/mirth.properties
 if [ -f /run/secrets/mirth_properties ]; then
 
-    # add new line in case /opt/connect/conf/mirth.properties doens't end with one
+    # add new line in case /opt/connect/conf/mirth.properties doesn't end with one
     echo "" >> /opt/connect/conf/mirth.properties
 
     while read -r keyvalue; do
@@ -192,21 +192,19 @@ fi
 if ! [ -z "${CUSTOM_JARS_DOWNLOAD+x}" ]; then
 	echo "Downloading Jars at ${CUSTOM_JARS_DOWNLOAD}"
 	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
-		curl -ksSLf "${CUSTOM_JARS_DOWNLOAD}" -o  userJars.zip
+		curl -ksSLf "${CUSTOM_JARS_DOWNLOAD}" -o userJars.zip || echo "problem with custom jars download"
 	else
-		curl -sSLf "${CUSTOM_JARS_DOWNLOAD}" -o userJars.zip
+		curl -sSLf "${CUSTOM_JARS_DOWNLOAD}" -o userJars.zip || echo "problem with custom jars download"
 	fi
 
 	# Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib folder
 	if [ -e "userJars.zip" ]; then
 		echo "Unzipping contents of userJars.zip into /opt/connect/server-launcher-lib"
-		unzip userJars.zip -d  /opt/connect/server-launcher-lib
+		unzip userJars.zip -d /opt/connect/server-launcher-lib
 		# removing the downloaded zip file
 		rm userJars.zip
 	fi
-
 fi
-
 
 # download extensions from this url "$EXTENSIONS_DOWNLOAD", set by user
 if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
@@ -230,22 +228,19 @@ if ! [ -z "${EXTENSIONS_DOWNLOAD+x}" ]; then
 		if [ $zipFileCount != 0 ]; then
 			echo "Unzipping contents of /tmp/userextensions/ zips into /opt/connect/extensions"
 			for f in /tmp/userextensions/*.zip; do unzip "$f" -d /opt/connect/extensions; done
-			# removing the downloaded zip file
-			rm -rf /tmp/userextensions
 		fi
+		# removing the tmp folder
+		rm -rf /tmp/userextensions
 	fi
 fi
-
-
-
 
 # download keystore
 if ! [ -z "${KEYSTORE_DOWNLOAD+x}" ]; then
 	echo "Downloading keystore at ${KEYSTORE_DOWNLOAD}"
 	if ! [ -z "${ALLOW_INSECURE}" ] && [ "${ALLOW_INSECURE}" == "true" ]; then
-		curl -ksSLf "${KEYSTORE_DOWNLOAD}" -o "/opt/connect/appdata/keystore.jks"
+		curl -ksSLf "${KEYSTORE_DOWNLOAD}" -o "/opt/connect/appdata/keystore.jks" || echo "problem with keystore download"
 	else
-		curl -sSLf "${KEYSTORE_DOWNLOAD}" -o "/opt/connect/appdata/keystore.jks"
+		curl -sSLf "${KEYSTORE_DOWNLOAD}" -o "/opt/connect/appdata/keystore.jks" || echo "problem with keystore download"
 	fi
 fi
 
