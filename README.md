@@ -93,8 +93,8 @@ docker pull --platform linux/arm64 nextgenhealthcare/connect:latest
 
 #### Where to get help:
 
-* [Connect User Guide](http://downloads.mirthcorp.com/connect-user-guide/latest/mirth-connect-user-guide.pdf)
-* [Connect Forum](https://www.mirthcorp.com/community/forums)
+* [Connect User Guide](https://docs.nextgen.com/)
+* [Connect Forum](https://forums.mirthproject.io/)
 * [Slack Channel](https://mirthconnect.slack.com/) (register [here](https://mirthconnect.herokuapp.com))
 * [Connect GitHub](https://github.com/nextgenhealthcare/connect)
 * [Connect Docker GitHub](https://github.com/nextgenhealthcare/connect-docker)
@@ -104,7 +104,7 @@ docker pull --platform linux/arm64 nextgenhealthcare/connect:latest
 * For issues relating to these Docker images:
   * https://github.com/nextgenhealthcare/connect-docker/issues
 * For issues relating to the Connect application itself:
-  * http://www.mirthcorp.com/community/issues
+  * https://github.com/nextgenhealthcare/connect/issues
 
 ------------
 
