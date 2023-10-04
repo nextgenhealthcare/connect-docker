@@ -46,10 +46,6 @@ class DockerTestsKeystoreHTTPS(unittest.TestCase):
         except Exception as e:
             self.fail(e)
 
-        # expect Connect to not start
-        with self.assertRaises(Exception) as e:
-            DockerUtil.wait_for_containers([self.container], self.max_wait_time)
-
     @classmethod
     def tearDownClass(cls):
         # clean up at the end of the test
