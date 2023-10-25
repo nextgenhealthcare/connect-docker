@@ -5,12 +5,17 @@ unzip \
 && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
 
 #Remove the installed version of openssl, and replace it with an up-to-date version
+ARG OPENSSL_VERSION="openssl-3.1.4"
 RUN apt-get -y remove openssl \
-&& curl -O https://www.openssl.org/source/openssl-3.1.3.tar.gz \
-&& tar -xzvf openssl-3.1.3.tar.gz \
-&& cd openssl-3.1.3 \
+&& cd home \
+&& curl -O https://www.openssl.org/source/${OPENSSL_VERSION}.tar.gz \
+&& tar -xzvf ${OPENSSL_VERSION}.tar.gz \
+&& cd ${OPENSSL_VERSION} \
 && ./config \
-&& make install
+&& make install \
+&& cd .. \
+&& rm -rf ${OPENSSL_VERSION} \
+&& rm -f ${OPENSSL_VERSION}.tar.gz
 
 ENV LD_LIBRARY_PATH "/usr/local/lib64"
 
