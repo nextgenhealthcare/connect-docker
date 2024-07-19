@@ -24,7 +24,8 @@
 
 ##### Eclipse Temurin OpenJDK 17
 
-* [4.5, 4.5.0, latest](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile)
+* [4.5, 4.5.1, latest](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile)
+* [4.5.0](https://github.com/nextgenhealthcare/connect-docker/blob/4.5.0/Dockerfile)
 * [4.4, 4.4.2](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.2/Dockerfile)
 * [4.4.1](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.1/Dockerfile)
 * [4.4.0](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.0/Dockerfile)
@@ -33,7 +34,8 @@
 
 ##### Eclipse Temurin OpenJDK 17 with full JDK
 
-* [4.5-jdk, 4.5.0-jdk, latest-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-jdk)
+* [4.5-jdk, 4.5.1-jdk, latest-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-jdk)
+* [4.5.0-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.5.0/Dockerfile-jdk)
 * [4.4-jdk, 4.4.2-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.2/Dockerfile-jdk)
 * [4.4.1-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.1/Dockerfile-jdk)
 * [4.4.0-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.0/Dockerfile-jdk)
@@ -42,7 +44,8 @@
 
 ##### Zulu OpenJDK 17 (Alpine Linux)
 
-* [4.5-zulu-alpine, 4.5.0-zulu-alpine, latest-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine)
+* [4.5-zulu-alpine, 4.5.1-zulu-alpine, latest-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine)
+* [4.5.0-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.5.0/Dockerfile-zulu-alpine)
 * [4.4-zulu-alpine, 4.4.2-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.2/Dockerfile-zulu-alpine)
 * [4.4.1-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.1/Dockerfile-zulu-alpine)
 * [4.4.0-zulu-alpine](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.0/Dockerfile-zulu-alpine)
@@ -51,7 +54,8 @@
 
 ##### Zulu OpenJDK 17 with full JDK
 
-* [4.5-zulu-alpine-jdk, 4.5.0-zulu-alpine-jdk, latest-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine-jdk)
+* [4.5-zulu-alpine-jdk, 4.5.1-zulu-alpine-jdk, latest-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/master/Dockerfile-zulu-alpine-jdk)
+* [4.5.0-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.5.0/Dockerfile-zulu-alpine-jdk)
 * [4.4-zulu-alpine-jdk, 4.4.2-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.2/Dockerfile-zulu-alpine-jdk)
 * [4.4.1-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.1/Dockerfile-zulu-alpine-jdk)
 * [4.4.0-zulu-alpine-jdk](https://github.com/nextgenhealthcare/connect-docker/blob/4.4.0/Dockerfile-zulu-alpine-jdk)
