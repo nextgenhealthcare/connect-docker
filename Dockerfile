@@ -5,7 +5,7 @@ unzip \
 && sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen && locale-gen
 
 #Remove the installed version of openssl, and replace it with an up-to-date version
-ARG OPENSSL_VERSION="openssl-3.1.4"
+ARG OPENSSL_VERSION="openssl-3.1.6"
 RUN apt-get -y remove openssl \
 && cd home \
 && curl -OSL https://s3.amazonaws.com/downloads.mirthcorp.com/openssl/${OPENSSL_VERSION}.tar.gz \
