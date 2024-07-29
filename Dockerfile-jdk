@@ -8,7 +8,7 @@ unzip \
 ARG OPENSSL_VERSION="openssl-3.1.4"
 RUN apt-get -y remove openssl \
 && cd home \
-&& curl -L https://github.com/openssl/openssl/releases/download/${OPENSSL_VERSION}/${OPENSSL_VERSION}}.tar.gz > ${OPENSSL_VERSION}.tar.gz \
+&& curl -L https://github.com/openssl/openssl/releases/download/${OPENSSL_VERSION}/${OPENSSL_VERSION}.tar.gz > ${OPENSSL_VERSION}.tar.gz \
 && tar -xzvf ${OPENSSL_VERSION}.tar.gz \
 && cd ${OPENSSL_VERSION} \
 && ./config \
