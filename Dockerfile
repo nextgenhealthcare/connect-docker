@@ -29,7 +29,7 @@ RUN curl -SL https://s3.amazonaws.com/downloads.mirthcorp.com/connect/4.5.1.b332
     | tar -xzC /opt \
     && mv "/opt/Mirth Connect" /opt/connect
 
-RUN useradd -u 1000 mirth
+RUN useradd -u 1001 mirth
 RUN mkdir -p /opt/connect/appdata && chown -R mirth:mirth /opt/connect/appdata
 
 VOLUME /opt/connect/appdata
