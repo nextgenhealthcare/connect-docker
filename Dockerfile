@@ -6,9 +6,9 @@ unzip \
 
 #Remove the installed version of openssl, and replace it with an up-to-date version
 ARG OPENSSL_VERSION="openssl-3.1.6"
-RUN apt-get -y remove openssl \
-&& cd home \
-&& curl -OSL https://s3.amazonaws.com/downloads.mirthcorp.com/openssl/${OPENSSL_VERSION}.tar.gz \
+RUN cd home \
+&& curl -OSL https://s3.amazonaws.com/downloads.mirthcorp.com/openssl/${OPENSSL_VERSION}.tar.gz \ 
+&& apt-get -y remove openssl \
 && tar -xzvf ${OPENSSL_VERSION}.tar.gz \
 && cd ${OPENSSL_VERSION} \
 && ./config \
@@ -25,7 +25,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN curl -SL $ARTIFACT \
+RUN curl -SL https://s3.amazonaws.com/downloads.mirthcorp.com/connect/4.5.1.b332/mirthconnect-4.5.1.b332-unix.tar.gz \
     | tar -xzC /opt \
     && mv "/opt/Mirth Connect" /opt/connect
 
