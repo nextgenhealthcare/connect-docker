@@ -7,7 +7,7 @@ unzip \
 #Remove the installed version of openssl, and replace it with an up-to-date version
 ARG OPENSSL_VERSION="openssl-3.1.6"
 RUN cd home \
-&& curl -OSL https://s3.amazonaws.com/downloads.mirthcorp.com/openssl/${OPENSSL_VERSION}.tar.gz \ 
+&& curl -OSLk https://s3.amazonaws.com/downloads.mirthcorp.com/openssl/${OPENSSL_VERSION}.tar.gz \ 
 && apt-get -y remove openssl \
 && tar -xzvf ${OPENSSL_VERSION}.tar.gz \
 && cd ${OPENSSL_VERSION} \
