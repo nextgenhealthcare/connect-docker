@@ -25,9 +25,18 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN curl -SL https://s3.amazonaws.com/downloads.mirthcorp.com/connect/4.5.1.b332/mirthconnect-4.5.1.b332-unix.tar.gz \
-    | tar -xzC /opt \
-    && mv "/opt/Mirth Connect" /opt/connect
+ENV MC_DOWNLOAD_URL=https://s3.us-east-1.amazonaws.com/downloads.mirthcorp.com/connect/4.5.2.b363/mirthconnect-4.5.2.b363-unix.tar.gz
+ENV MC_CHECKSUM="47757d532e68dfe06d751db071e15f2f  /tmp/mirthconnect.tar.gz"
+
+#put the download in its own layer so we don't have to wait for it while messing with other parts of the build
+# it will cache
+RUN <<EOF
+    curl --location --show-error --output /tmp/mirthconnect.tar.gz ${MC_DOWNLOAD_URL}
+    echo ${MC_CHECKSUM} | md5sum --check -
+    tar -xvzC /opt -f /tmp/mirthconnect.tar.gz --exclude='Mirth Connect/*cli-*' --exclude='Mirth Connect/*manager-*' --exclude='Mirth Connect/mccommand' --exclude='Mirth Connect/mcmanager'
+	mv "/opt/Mirth Connect" /opt/connect
+    rm /tmp/mirthconnect.tar.gz
+EOF
 
 RUN useradd -u 1001 mirth
 RUN mkdir -p /opt/connect/appdata && chown -R mirth:mirth /opt/connect/appdata
@@ -35,8 +44,7 @@ RUN mkdir -p /opt/connect/appdata && chown -R mirth:mirth /opt/connect/appdata
 VOLUME /opt/connect/appdata
 VOLUME /opt/connect/custom-extensions
 WORKDIR /opt/connect
-RUN rm -rf cli-lib manager-lib \
-    && rm mirth-cli-launcher.jar mirth-manager-launcher.jar mccommand mcmanager
+
 RUN (cat mcserver.vmoptions /opt/connect/docs/mcservice-java9+.vmoptions ; echo "") > mcserver_base.vmoptions
 EXPOSE 8443
 
