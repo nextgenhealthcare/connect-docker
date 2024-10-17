@@ -38,20 +38,21 @@ RUN <<EOF
     rm /tmp/mirthconnect.tar.gz
 EOF
 
-RUN useradd -u 1001 mirth
-RUN mkdir -p /opt/connect/appdata && chown -R mirth:mirth /opt/connect/appdata
-
-VOLUME /opt/connect/appdata
-VOLUME /opt/connect/custom-extensions
+VOLUME /opt/connect/appdata /opt/connect/custom-extensions
 WORKDIR /opt/connect
 
-RUN (cat mcserver.vmoptions /opt/connect/docs/mcservice-java9+.vmoptions ; echo "") > mcserver_base.vmoptions
+RUN <<EOF
+  useradd -u 1001 mirth
+  mkdir -p /opt/connect/appdata
+  (cat mcserver.vmoptions /opt/connect/docs/mcservice-java9+.vmoptions ; echo "") > mcserver_base.vmoptions
+  chown -R mirth:mirth /opt/connect
+EOF
+
 EXPOSE 8443
 
 COPY entrypoint.sh /
 RUN chmod 755 /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-RUN chown -R mirth:mirth /opt/connect
 USER mirth
 CMD ["./mcserver"]
