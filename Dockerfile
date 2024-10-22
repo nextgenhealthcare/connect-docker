@@ -25,7 +25,7 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
-RUN curl -SL https://s3.amazonaws.com/downloads.mirthcorp.com/connect/4.5.1.b332/mirthconnect-4.5.1.b332-unix.tar.gz \
+RUN curl -SL https://s3.amazonaws.com/downloads.mirthcorp.com/connect/4.5.2.b363/mirthconnect-4.5.2.b363-unix.tar.gz \
     | tar -xzC /opt \
     && mv "/opt/Mirth Connect" /opt/connect
 
