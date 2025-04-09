@@ -133,7 +133,7 @@ docker pull --platform linux/arm64 nextgenhealthcare/connect:latest
 
 An open-source message integration engine focused on healthcare. For more information please visit our [GitHub page](https://github.com/nextgenhealthcare/connect).
 
-<img src="https://github.com/nextgenhealthcare/connect/raw/development/server/public_html/images/MirthConnect_Logo_WordMark_Big.png"/>
+<img src="https://s3.us-east-1.amazonaws.com/downloads.mirthcorp.com/images/MirthConnect_Logo_WordMark_RGB.png"/>
 
 ------------
 
