@@ -4,7 +4,7 @@
 * [Supported tags and respective Dockerfile links](#supported-tags)
 * [Supported Architectures](#supported-architectures)
 * [Quick Reference](#quick-reference)
-* [What is NextGen Connect (formerly Mirth Connect)](#what-is-connect)
+* [What is Mirth Connect](#what-is-connect)
 * [How to use this image](#how-to-use)
   * [Start a Connect instance](#start-connect)
   * [Using `docker stack deploy` or `docker-compose`](#using-docker-compose)
@@ -129,7 +129,7 @@ docker pull --platform linux/arm64 nextgenhealthcare/connect:latest
 ------------
 
 <a name="what-is-connect"></a>
-# What is NextGen Connect (formerly Mirth Connect) [↑](#top)
+# What is Mirth Connect [↑](#top)
 
 An open-source message integration engine focused on healthcare. For more information please visit our [GitHub page](https://github.com/nextgenhealthcare/connect).
 
